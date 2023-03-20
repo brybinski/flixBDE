@@ -4,4 +4,4 @@ Rybiński, Bartosz<br>
 Sójka, Dawid<br>
 Raś, Mariusz<br>
 Protsailo, Dmytro<br>
-Filip Klimek<br>
+Filip Klimek<br> 
