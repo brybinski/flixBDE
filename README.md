@@ -1,7 +1,7 @@
 # flixBDE
 University assingment project<br>
-Rybiński Bartosz<br> 
-Sójka Dawid<br> 
-Raś Mariusz<br> 
-Protsailo Dmytro<br> 
+Bartosz Rybiński<br> 
+Dawid Sójka<br> 
+Mariusz Raś<br> 
+Dmytro Protsailo<br> 
 Filip Klimek<br> 
