@@ -1,6 +1,10 @@
 package com.bde.flix.model.content;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Film extends Content implements Watchable{
+
     private int duration;
 
     public int getDuration(){
