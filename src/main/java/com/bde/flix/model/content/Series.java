@@ -1,6 +1,15 @@
 package com.bde.flix.model.content;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+
+@Entity
 public class Series extends Content{
-    private Season[] seasons;
+
+
+    @ManyToOne
+    private Season season;
 
 }

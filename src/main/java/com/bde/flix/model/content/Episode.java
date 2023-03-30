@@ -1,6 +1,11 @@
 package com.bde.flix.model.content;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Episode implements Watchable {
+    @Id
     private long id;
     private int number;
     private String description;
