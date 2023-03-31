@@ -1,7 +1,9 @@
 package com.bde.flix.model.userman;
 
-// decide if it is good
-public class Admin {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Admin extends Account {
     private String name;
     private String surname;
     private int work_id;
