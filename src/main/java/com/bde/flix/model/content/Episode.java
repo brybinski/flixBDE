@@ -1,15 +1,21 @@
 package com.bde.flix.model.content;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 public class Episode implements Watchable {
     @Id
+    @GeneratedValue
     private long id;
-    private int number;
+    @Column(nullable = false, length = 64)
+    private String title;
+    private int number;     // number of what?
+    @Column(nullable = true, length = 256)
     private String description;
-    private String path;
+    private String path;   // path to where?
     private int duration;
 
     public int getDuration(){

@@ -11,8 +11,11 @@ import java.util.ArrayList;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Account {
     @Id
+    @GeneratedValue
     private long id;
+    @Column(nullable = false, length = 64)
     private String email;
+    @Column(nullable = false, length = 64)
     private String hash;
     private boolean availSub;
 
