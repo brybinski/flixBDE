@@ -9,22 +9,25 @@ import jakarta.persistence.*;
 public class History{
 
     @Id
+    @GeneratedValue
     private long id;
-
+    // why many to one and not one to one
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
-
+    // why many to one and not one to one
     @ManyToOne
     @JoinColumn(name = "film_id")
     private Film film;
-
+    // why many to one and not one to one
     @ManyToOne
     @JoinColumn(name = "episode_id")
     private Episode episode;
 
 
     private int watch_time;
+    private int content_type;
+
 
     public Account getAccount() {
         return account;
