@@ -16,6 +16,7 @@ public class Card {
     private long card_number;
     private int cvv;
     private YearMonth expire_date;
+    
     @Column(nullable = false, length = 64)
     private String cardHolder;
 

@@ -28,6 +28,7 @@ public class History{
     private int watch_time;
     private int content_type;
 
+
     public Account getAccount() {
         return account;
     }

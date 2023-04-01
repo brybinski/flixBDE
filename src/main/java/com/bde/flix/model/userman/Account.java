@@ -16,6 +16,7 @@ public abstract class Account {
     @Column(nullable = false, length = 64)
     private String email;
     @Column(nullable = false, length = 64)
+
     private String hash;
     private boolean availSub;
 
