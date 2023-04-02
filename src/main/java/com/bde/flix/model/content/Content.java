@@ -1,16 +1,20 @@
 package com.bde.flix.model.content;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
-
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
+
+@Getter
+@Setter
 
 @MappedSuperclass
 public abstract class Content {
     @Id
-    @GeneratedValue
-    private long id;
+    @UuidGenerator
+    @Column(unique = true)
+    private String uuid;
     @Column(nullable = false, length = 64)
     private String title;
     private int duration;

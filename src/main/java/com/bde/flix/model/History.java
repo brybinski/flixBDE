@@ -4,13 +4,21 @@ import com.bde.flix.model.content.Episode;
 import com.bde.flix.model.content.Film;
 import com.bde.flix.model.userman.Account;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class History{
 
     @Id
-    @GeneratedValue
-    private long id;
+    @UuidGenerator
+    @Column(unique = true)
+    private String uuid;
     // why many to one and not one to one
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id", nullable = false)

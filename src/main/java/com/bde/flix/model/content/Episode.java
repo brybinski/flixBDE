@@ -2,20 +2,19 @@ package com.bde.flix.model.content;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.UuidGenerator;
+
 
 @Entity
 public class Episode implements Watchable {
     @Id
-    @GeneratedValue
-    private long id;
-    @Column(nullable = false, length = 64)
-    private String title;
-    private int number;     // number of what?
-    @Column(nullable = true, length = 256)
+    @UuidGenerator
+    @Column(unique = true)
+    private String uuid;
+    private int number;
     private String description;
-    private String path;   // path to where?
+    private String path;
     private int duration;
 
     public int getDuration(){

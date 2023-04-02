@@ -1,9 +1,15 @@
 package com.bde.flix.model.userman;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.context.annotation.Primary;
 
 import java.time.YearMonth;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 
 public class Card {
