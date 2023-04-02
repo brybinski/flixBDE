@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,9 +18,8 @@ import org.hibernate.annotations.UuidGenerator;
 public class History{
 
     @Id
-    @UuidGenerator
-    @Column(unique = true)
-    private String uuid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     // why many to one and not one to one
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id", nullable = false)

@@ -3,18 +3,21 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.UUID;
 
 
 @Getter
 @Setter
-
 @MappedSuperclass
 public abstract class Content {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
-    @Column(unique = true)
-    private String uuid;
+    private UUID id;
+
     @Column(nullable = false, length = 64)
     private String title;
     private int duration;
@@ -25,8 +28,9 @@ public abstract class Content {
     private String poster;
     @Column(nullable = true, length = 64)
     private String director;
-    @Column(nullable = true, length = 128)
-    private String cast;
+
+    @ElementCollection
+    private ArrayList<String> actors_cast;
 
 
 

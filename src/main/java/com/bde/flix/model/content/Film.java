@@ -11,6 +11,7 @@ import lombok.Setter;
 @Entity
 public class Film extends Content implements Watchable{
 
+
     private int duration;
 
 }

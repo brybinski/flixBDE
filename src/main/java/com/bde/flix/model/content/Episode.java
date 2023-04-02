@@ -1,17 +1,17 @@
 package com.bde.flix.model.content;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 
 @Entity
 public class Episode implements Watchable {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
-    @Column(unique = true)
-    private String uuid;
+    private UUID id;
     private int number;
     private String description;
     private String path;
