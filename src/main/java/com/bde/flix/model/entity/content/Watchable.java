@@ -1,4 +1,4 @@
-package com.bde.flix.model.content;
+package com.bde.flix.model.entity.content;
 
 public interface Watchable {
     public int getDuration();
