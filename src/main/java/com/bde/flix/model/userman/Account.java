@@ -1,19 +1,23 @@
 package com.bde.flix.model.userman;
-
-
-import com.bde.flix.model.History;
-
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
+import java.util.UUID;
+
+
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Account {
     @Id
-    @GeneratedValue
-    private long id;
-    @Column(nullable = false, length = 64)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
+    private UUID id;
+    @Column(nullable = false, length = 320)
     private String email;
     @Column(nullable = false, length = 64)
 
