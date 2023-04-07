@@ -1,4 +1,4 @@
 package com.bde.flix;
 
-public record Registration(String token, org.springframework.http.HttpStatus status) {
+public record Registration(org.springframework.http.HttpStatus status) {
 }

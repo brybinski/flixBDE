@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class RegistrationController {
 
 //    TODO: mail sending function
-    private String token = "abcdf";
+//    private String token = "abcdf";
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(value = "/register")
 
@@ -17,7 +17,7 @@ public class RegistrationController {
                                 @RequestParam(required = true) String password,
                                 @RequestParam(required = true) String name,
                                 @RequestParam(required = true) String surname){
-        return new Registration(token, HttpStatus.OK);
+        return new Registration(HttpStatus.OK);
     }
 
 
