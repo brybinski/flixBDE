@@ -1,16 +1,22 @@
-package com.bde.flix.model.content;
+package com.bde.flix.model.entity.content;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
-
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
+
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class Content {
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
+    private UUID id;
+
     @Column(nullable = false, length = 64)
     private String title;
     private int duration;
@@ -21,8 +27,10 @@ public abstract class Content {
     private String poster;
     @Column(nullable = true, length = 64)
     private String director;
+
     @ElementCollection
     private ArrayList<String> actors_cast;
+
 
 
 }
