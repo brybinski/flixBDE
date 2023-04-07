@@ -1,4 +1,4 @@
-package com.bde.flix.model.content;
+package com.bde.flix.model.entity.content;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Film extends Content implements Watchable{
+public class Film extends com.bde.flix.model.entity.content.Content implements Watchable {
 
 
     private int duration;

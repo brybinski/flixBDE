@@ -1,13 +1,12 @@
-package com.bde.flix.model;
+package com.bde.flix.model.entity;
 
-import com.bde.flix.model.content.Episode;
-import com.bde.flix.model.content.Film;
-import com.bde.flix.model.userman.Account;
+import com.bde.flix.model.entity.content.Episode;
+import com.bde.flix.model.entity.content.Film;
+import com.bde.flix.model.entity.userman.Account;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 

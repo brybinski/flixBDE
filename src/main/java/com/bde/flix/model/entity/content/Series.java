@@ -1,7 +1,6 @@
-package com.bde.flix.model.content;
+package com.bde.flix.model.entity.content;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Series extends Content{
+public class Series extends com.bde.flix.model.entity.content.Content {
 
 
     @ManyToOne
-    private Season season;
+    private com.bde.flix.model.entity.content.Season season;
 
 }
