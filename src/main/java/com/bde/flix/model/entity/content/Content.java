@@ -27,7 +27,6 @@ public abstract class Content {
     private String poster;
     @Column(nullable = true, length = 64)
     private String director;
-
     @ElementCollection
     private ArrayList<String> actors_cast;
 

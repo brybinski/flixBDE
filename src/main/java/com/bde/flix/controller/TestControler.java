@@ -16,8 +16,7 @@ public class TestControler {
 
     @Autowired
     private TestService testService;
-    @Autowired
-    private TestRepository testRepo;
+
 
     @GetMapping("/test-create")
     public  Test test(@RequestParam(required = true, defaultValue = "10") int num) {
