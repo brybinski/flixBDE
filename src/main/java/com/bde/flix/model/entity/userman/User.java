@@ -1,4 +1,4 @@
-package com.bde.flix.model.userman;
+package com.bde.flix.model.entity.userman;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;

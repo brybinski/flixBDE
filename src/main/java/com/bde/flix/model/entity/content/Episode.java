@@ -1,4 +1,4 @@
-package com.bde.flix.model.content;
+package com.bde.flix.model.entity.content;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;

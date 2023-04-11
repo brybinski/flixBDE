@@ -1,9 +1,9 @@
-package com.bde.flix.model.userman;
+package com.bde.flix.model.entity.userman;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
+
 
 import java.time.YearMonth;
 
@@ -26,12 +26,5 @@ public class Card {
     @Column(nullable = false, length = 64)
     private String cardHolder;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 }
