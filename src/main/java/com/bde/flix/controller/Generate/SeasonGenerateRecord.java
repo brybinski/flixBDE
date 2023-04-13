@@ -1,4 +1,4 @@
-package com.bde.flix.controller;
+package com.bde.flix.controller.Generate;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

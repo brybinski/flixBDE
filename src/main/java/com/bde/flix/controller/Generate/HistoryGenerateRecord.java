@@ -1,4 +1,4 @@
-package com.bde.flix.controller;
+package com.bde.flix.controller.Generate;
 
 import com.bde.flix.model.entity.History;
 

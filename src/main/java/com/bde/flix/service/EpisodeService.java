@@ -1,7 +1,6 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
 import com.bde.flix.model.entity.content.Episode;
-import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.repository.EpisodeRepository;
 import com.bde.flix.model.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;

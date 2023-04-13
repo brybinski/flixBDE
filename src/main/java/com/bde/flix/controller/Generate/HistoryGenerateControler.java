@@ -1,9 +1,8 @@
-package com.bde.flix.controller;
+package com.bde.flix.controller.Generate;
 
-import com.bde.flix.Service.HistoryService;
+import com.bde.flix.service.HistoryService;
+import com.bde.flix.controller.ErrorRecord;
 import com.bde.flix.model.entity.History;
-import com.bde.flix.model.entity.content.TestEntity;
-import com.bde.flix.model.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

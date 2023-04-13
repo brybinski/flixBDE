@@ -1,4 +1,4 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
 import com.bde.flix.model.entity.History;
 import com.bde.flix.model.entity.content.Episode;
@@ -6,7 +6,6 @@ import com.bde.flix.model.entity.content.Film;
 import com.bde.flix.model.repository.EpisodeRepository;
 import com.bde.flix.model.repository.FilmRepository;
 import com.bde.flix.model.repository.HistoryRepository;
-import org.aspectj.weaver.BindingScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +38,7 @@ public class HistoryService {
         else{
             Optional<Film> con = filmRepo.findById(content_id);
             if (con.isEmpty()){
-                throw new InvalidAttributeValueException("No episode with given UUID");
+                throw new InvalidAttributeValueException("No film with given UUID");
             }
             else{
                 instance.setFilm(filmRepo.getReferenceById(content_id));
