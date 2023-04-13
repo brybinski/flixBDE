@@ -35,6 +35,4 @@ public abstract class Content {
 //    @ElementCollection
 //    private ArrayList<String> genre_tag;
 
-
-
 }
