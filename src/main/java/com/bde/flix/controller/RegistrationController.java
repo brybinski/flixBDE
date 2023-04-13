@@ -1,6 +1,4 @@
-package com.bde.flix;
-
-import java.util.concurrent.atomic.AtomicLong;
+package com.bde.flix.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

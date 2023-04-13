@@ -1,4 +1,4 @@
-package com.bde.flix;
+package com.bde.flix.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;

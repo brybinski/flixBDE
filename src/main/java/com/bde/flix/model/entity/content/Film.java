@@ -10,8 +10,4 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Film extends com.bde.flix.model.entity.content.Content implements Watchable {
-
-
-    private int duration;
-
 }

@@ -3,9 +3,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 
 import java.time.YearMonth;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,10 +16,12 @@ import java.time.YearMonth;
 
 public class Card {
     @Id
-    @OneToOne(optional = false, orphanRemoval = true)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
+    private UUID id;
 
-    private User user;
+//    @OneToOne(orphanRemoval = true)
+//    private User user;
 
     private long card_number;
     private int cvv;

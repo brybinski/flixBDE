@@ -1,4 +1,4 @@
-package com.bde.flix;
+package com.bde.flix.controller;
 
 public record Search(String ID,
                      String DESCRIPTION,

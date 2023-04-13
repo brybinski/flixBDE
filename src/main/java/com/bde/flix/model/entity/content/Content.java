@@ -30,6 +30,4 @@ public abstract class Content {
     @ElementCollection
     private ArrayList<String> actors_cast;
 
-
-
 }

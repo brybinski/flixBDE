@@ -1,4 +1,4 @@
-package com.bde.flix;
+package com.bde.flix.controller;
 
 public record CMS(Boolean ack) {
 }
