@@ -1,4 +1,4 @@
-package com.bde.flix;
+package com.bde.flix.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.CrossOrigin;

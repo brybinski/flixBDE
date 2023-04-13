@@ -13,7 +13,4 @@ import lombok.Setter;
 public class Series extends com.bde.flix.model.entity.content.Content {
 
 
-    @ManyToOne
-    private com.bde.flix.model.entity.content.Season season;
-
 }
