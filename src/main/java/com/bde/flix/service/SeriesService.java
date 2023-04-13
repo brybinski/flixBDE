@@ -1,13 +1,9 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
-import com.bde.flix.model.entity.History;
 import com.bde.flix.model.entity.content.Series;
-import com.bde.flix.model.repository.HistoryRepository;
 import com.bde.flix.model.repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class SeriesService {
