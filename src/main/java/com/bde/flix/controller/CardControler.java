@@ -14,7 +14,6 @@ public class CardControler {
 
     @Autowired
     private CardService cardService;
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/card")
     public CardRecord GetCredentials(@RequestParam(required = true) String user,
                                      @RequestParam(required = true) long card_number,
