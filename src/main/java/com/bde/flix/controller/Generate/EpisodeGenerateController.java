@@ -1,7 +1,7 @@
 package com.bde.flix.controller.Generate;
 
 
-import com.bde.flix.service.EpisodeService;
+import com.bde.flix.Service.EpisodeService;
 import com.bde.flix.model.entity.content.Episode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

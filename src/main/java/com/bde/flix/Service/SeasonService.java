@@ -1,4 +1,4 @@
-package com.bde.flix.service;
+package com.bde.flix.Service;
 
 import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.repository.SeasonRepository;
