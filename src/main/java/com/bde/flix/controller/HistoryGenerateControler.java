@@ -19,6 +19,7 @@ public class HistoryGenerateControler {
     @Autowired
     private HistoryService historyService;
 
+    //TODO: Find better solution
     @GetMapping("/hist-create")
     public  <T> T genHist(@RequestParam(required = true) UUID content_uuid,
                       @RequestParam(required = true) UUID acc_uuid,
