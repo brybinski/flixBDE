@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FlixApplication {
 
+    public static Boolean debug = true;
     public static void main(String[] args) {
         SpringApplication.run(FlixApplication.class, args);
     }

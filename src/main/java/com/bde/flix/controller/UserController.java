@@ -25,9 +25,9 @@ public class UserController {
         return new UserRecord(entity.getEmail(), entity.getHash());
 
 
-        // tutaj potrzeba typow generycznych zeby to dobrze dzialalo
-        // zostawie na razie bez flagi debug
-        // odkomentuj tez import
+        //tutaj potrzeba typow generycznych zeby to dobrze dzialalo
+        //zostawie na razie bez flagi debug
+        //odkomentuj tez import
         //if(FlixApplication.debug){
         //    return new UserRecord(mail, passwd);
         //}
