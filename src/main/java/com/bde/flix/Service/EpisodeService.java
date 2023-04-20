@@ -14,14 +14,14 @@ public class EpisodeService {
     SeasonRepository seasonRepo;
 
     @Autowired
-    public EpisodeService(EpisodeRepository hist){
+    public EpisodeService(EpisodeRepository hist, SeasonRepository seasonRepo){
         this.epiRepo = hist;
+        this.seasonRepo = seasonRepo;
     }
 
     public Episode createEpisode(UUID season, int num, String description, String path, int duration){
 
         Episode instance = new Episode();
-        //TODO: uuid check
         instance.setSeason(seasonRepo.getReferenceById(season));
         instance.setNumber(num);
         instance.setDescription(description);

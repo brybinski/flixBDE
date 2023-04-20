@@ -19,7 +19,7 @@ public class Season {
     @UuidGenerator
     private UUID id;
     private int number;
-    @Column(nullable = true, length = 256)
+    @Column(nullable = true, length = 1024)
     private String description;
 
     @ManyToOne

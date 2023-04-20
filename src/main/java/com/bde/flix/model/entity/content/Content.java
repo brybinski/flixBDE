@@ -28,11 +28,12 @@ public abstract class Content {
     private String poster;
     @Column(nullable = true, length = 128)
     private String director;
-    @ElementCollection
-    private ArrayList<String> actors_cast;
 
-    @ElementCollection
-    private ArrayList<String> genre_tag;
+//    @ElementCollection
+//    private ArrayList<String> actors_cast;
+
+//    @ElementCollection
+//    private ArrayList<String> genre_tag;
 
 
 

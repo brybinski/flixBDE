@@ -20,15 +20,15 @@ public class History{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    // why many to one and not one to one
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
-    // why many to one and not one to one
+
     @ManyToOne
     @JoinColumn(name = "film_id")
     private Film film;
-    // why many to one and not one to one
+
     @ManyToOne
     @JoinColumn(name = "episode_id")
     private Episode episode;
@@ -52,4 +52,5 @@ public class History{
         // empty uuid
         else return new UUID(0L, 0L);
     }
+
 }
