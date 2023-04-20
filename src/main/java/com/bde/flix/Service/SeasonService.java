@@ -14,17 +14,16 @@ public class SeasonService {
     SeriesRepository seriesRepo;
 
     @Autowired
-    public SeasonService(SeasonRepository test){
+    public SeasonService(SeasonRepository test, SeriesRepository seriesRepo){
         this.seasonRepo = test;
+        this.seriesRepo = seriesRepo;
     }
 
     public Season createSeason(int num, String description, UUID series){
         Season instance = new Season();
-        //TODO: check parameters
         instance.setNumber(num);
         instance.setSeries(seriesRepo.getReferenceById(series));
         instance.setDescription(description);
-        seasonRepo.save(instance);
-        return instance;
+        return seasonRepo.save(instance);
     }
 }

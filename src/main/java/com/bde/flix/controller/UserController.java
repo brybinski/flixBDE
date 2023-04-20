@@ -22,7 +22,7 @@ public class UserController {
                      ) {
         User entity = userservice.createuser(mail, passwd);
 
-        return new UserRecord(entity.getEmail(), entity.getHash());
+        return new UserRecord(entity.getId(),entity.getEmail(), entity.getHash());
 
 
         // tutaj potrzeba typow generycznych zeby to dobrze dzialalo

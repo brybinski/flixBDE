@@ -27,8 +27,7 @@ public class EpisodeService {
         instance.setDescription(description);
         instance.setPath(path);
         instance.setDuration(duration);
-        epiRepo.save(instance);
-        return instance;
+        return epiRepo.save(instance);
     }
 }
 

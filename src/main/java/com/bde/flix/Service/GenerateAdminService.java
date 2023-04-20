@@ -22,8 +22,7 @@ public class GenerateAdminService {
         instance.setEmail(mail);
         instance.setHash(passwd);
         instance.setWork_id(Integer.parseInt(workid));
-        adminrepo.save(instance);
-        return instance;
+        return adminrepo.save(instance);
     }
 }
 

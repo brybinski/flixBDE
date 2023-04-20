@@ -24,9 +24,9 @@ public abstract class Content {
     @Column(nullable = true, length = 256)
     private String description;
     private LocalDate releaseDate;
-    @Column(nullable = true, length = 64)
+    @Column(nullable = true, length = 128)
     private String poster;
-    @Column(nullable = true, length = 64)
+    @Column(nullable = true, length = 128)
     private String director;
     @ElementCollection
     private ArrayList<String> actors_cast;

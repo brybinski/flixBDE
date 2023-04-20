@@ -18,8 +18,7 @@ public class GenerateUserService {
         instance.setEmail(mail);
         // TODO: Funkcja hashujaca
         instance.setHash(passwd);
-        userrepo.save(instance);
-        return instance;
+        return userrepo.save(instance);
     }
 
 }

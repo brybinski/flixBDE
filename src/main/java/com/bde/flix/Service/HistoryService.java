@@ -51,8 +51,8 @@ public class HistoryService {
 
         // TODO: w8 for accRepo
         // instance.setAccount();
-        histRepo.save(instance);
-        return instance;
+        return histRepo.save(instance);
+
     }
 }
 

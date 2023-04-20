@@ -33,8 +33,7 @@ public class SeriesService {
 
 
 
-        serRepo.save(instance);
-        return instance;
+        return serRepo.save(instance);
     }
 }
 

@@ -20,9 +20,8 @@ public class Card {
     @UuidGenerator
     private UUID id;
 
-//    FIXME: ADD INHERITANCE
-//    @OneToOne(orphanRemoval = true)
-//    private User user;
+    @OneToOne(orphanRemoval = true)
+    private User user;
 
     private long card_number;
     private int cvv;
