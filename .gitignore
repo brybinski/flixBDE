@@ -39,8 +39,4 @@ out/
 # Project exclude paths
 /gradle/
 /datbase/db_bdeflix.trace.db
-
-# Manually added, db file causes merge issues
-# because it changes all the time
-datbase/db_bdeflix.mv.db
-
+/datbase/db_bdeflix.mv.db

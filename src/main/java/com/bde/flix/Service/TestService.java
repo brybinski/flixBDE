@@ -17,7 +17,7 @@ public class TestService {
     public TestEntity createTest(int num){
         TestEntity instance = new TestEntity();
         instance.setNumber(num);
-        testRepo.save(instance);
-        return instance;
+
+        return testRepo.save(instance);
     }
 }

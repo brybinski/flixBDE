@@ -14,12 +14,12 @@ public class SeriesGenerateController {
     @Autowired
     private SeriesService seriesService;
 
-    @GetMapping("/seriescreate")
+    @GetMapping("/series-create")
     public  SeriesGenerateRecord test(
                                        @RequestParam(required = true) String title,
                                        @RequestParam(required = false, defaultValue = "opis") String dscrp,
                                        @RequestParam(required = false, defaultValue = "./") String poster,
-                                       @RequestParam(required = false, defaultValue = "./") String direc,
+                                       @RequestParam(required = false, defaultValue = "none") String direc,
 // FIXME: pass localdate
 // @RequestParam(required = false, defaultValue = "String") LocalDate rdate,
                                        @RequestParam(required = false) int dur
