@@ -13,15 +13,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class Season {
+public class Season
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     private UUID id;
+
     private int number;
     @Column(nullable = true, length = 1024)
     private String description;
-
     @ManyToOne
     private Series series;
 

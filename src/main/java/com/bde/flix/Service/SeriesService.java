@@ -6,33 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SeriesService {
+public class SeriesService
+{
     SeriesRepository serRepo;
 
     @Autowired
-    public SeriesService(SeriesRepository repo){
+    public SeriesService(SeriesRepository repo)
+    {
         this.serRepo = repo;
     }
 
-    public Series createSeries(String title,
-                               String description,
-                               int duration,
-//                               LocalDate releaseDate,
-                               String poster,
-                               String director){
-
-
+    public Series createSeries(
+            String title,
+            String description,
+            int duration,
+//          LocalDate releaseDate,
+            String poster,
+            String director
+    )
+    {
         Series instance = new Series();
-//        TODO: check parameters...
+//      TODO: check parameters...
         instance.setTitle(title);
         instance.setDescription(description);
         instance.setDuration(duration);
-//        instance.setReleaseDate(releaseDate);
+//      instance.setReleaseDate(releaseDate);
         instance.setPoster(poster);
         instance.setDirector(director);
-
-
-
         return serRepo.save(instance);
     }
 }

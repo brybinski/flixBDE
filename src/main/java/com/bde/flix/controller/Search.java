@@ -7,6 +7,7 @@ public record Search(String ID,
                      String POSTER,
                      String RELEASE_DATE,
                      String TITLE
-) {
+)
+{
 }
 

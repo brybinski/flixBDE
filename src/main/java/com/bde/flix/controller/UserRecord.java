@@ -4,7 +4,10 @@ package com.bde.flix.controller;
 
 import java.util.UUID;
 
-public record UserRecord(UUID id, String mail, String passwd) {
+public record UserRecord(UUID id,
+                         String mail,
+                         String passwd)
+{
 }
 //public record UserRecord(HttpStatus status) {
 //}

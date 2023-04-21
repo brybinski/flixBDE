@@ -6,16 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenerateAdminService {
+public class AdminService
+{
     AdminRepository adminrepo;
     @Autowired
-    public GenerateAdminService(AdminRepository adminrepo){
+    public AdminService(AdminRepository adminrepo){
         this.adminrepo = adminrepo;
     }
 
     public Admin createadmin(
-            String name, String surname, String mail, String passwd, String workid
-    ){
+            String name,
+            String surname,
+            String mail,
+            String passwd,
+            String workid
+    )
+    {
         Admin instance = new Admin();
         instance.setName(name);
         instance.setSurname(surname);

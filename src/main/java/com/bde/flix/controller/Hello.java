@@ -1,4 +1,5 @@
 package com.bde.flix.controller;
 
-public record Hello(Boolean ack) {
+public record Hello(Boolean ack)
+{
 }
