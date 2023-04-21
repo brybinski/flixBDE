@@ -33,8 +33,7 @@ public class FilmService {
         instance.setPoster(poster);
         instance.setDirector(director);
 //      instance.setActors_cast(actors_cast);
-        filmRepo.save(instance);
-        return instance;
+        return filmRepo.save(instance);
     }
     // TODO: Casting of string to arraylist
 //    public Film addCast(String actors_cast)

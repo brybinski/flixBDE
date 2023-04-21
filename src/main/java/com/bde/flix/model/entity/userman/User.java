@@ -15,7 +15,5 @@ public class User extends Account {
 
     private int sub_type;
     private LocalDate sub_end;
-    @OneToOne
-    private Card cardInfo;
 
 }

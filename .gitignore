@@ -39,3 +39,4 @@ out/
 # Project exclude paths
 /gradle/
 /datbase/db_bdeflix.trace.db
+/datbase/db_bdeflix.mv.db
