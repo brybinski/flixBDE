@@ -27,15 +27,14 @@ public class CardController
                 cardNumber,
                 cvv,
 //              expireDate
-                cardHolder
-        );
+                cardHolder);
+
         return new CardRecord(
                 entity.getUser().toString(),
                 entity.getCard_number(),
                 entity.getCvv(),
                 "00.00.0000",
 //              entity.getExpire_date(),
-                entity.getCardHolder()
-        );
+                entity.getCardHolder());
     }
 }

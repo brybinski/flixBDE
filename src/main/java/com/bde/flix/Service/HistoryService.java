@@ -32,8 +32,7 @@ public class HistoryService
             UserRepository userRepo,
             AdminRepository adminRepo,
             EpisodeRepository episodeRepo,
-            FilmRepository filmRepo
-    )
+            FilmRepository filmRepo)
     {
         this.histRepo = hist;
         this.episodeRepo = episodeRepo;
@@ -47,8 +46,7 @@ public class HistoryService
             UUID content_id,
             UUID account_id,
             boolean episode,
-            int duration
-    ) throws InvalidAttributeValueException
+            int duration) throws InvalidAttributeValueException
     {
         History instance = new History();
         if (episode)

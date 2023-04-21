@@ -15,6 +15,4 @@ public class HelloController
     {
         return new Hello(hardcodedTemplate);
     }
-
-
 }

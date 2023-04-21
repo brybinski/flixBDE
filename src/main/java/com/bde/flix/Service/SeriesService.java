@@ -22,8 +22,7 @@ public class SeriesService
             int duration,
 //          LocalDate releaseDate,
             String poster,
-            String director
-    )
+            String director)
     {
         Series instance = new Series();
 //      TODO: check parameters...

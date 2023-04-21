@@ -28,6 +28,4 @@ public class Card
     private YearMonth expire_date;
     @Column(nullable = false, length = 64)
     private String cardHolder;
-
-
 }

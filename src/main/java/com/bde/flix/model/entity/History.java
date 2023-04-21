@@ -46,12 +46,12 @@ public class History
         if (this.episode != null)
         {
             return this.episode.getId();
-        } else if (this.film != null)
+        }
+        else if (this.film != null)
         {
             return this.film.getId();
         }
         // empty uuid
         else return new UUID(0L, 0L);
     }
-
 }

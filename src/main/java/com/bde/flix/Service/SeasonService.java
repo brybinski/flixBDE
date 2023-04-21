@@ -15,7 +15,9 @@ public class SeasonService
     SeriesRepository seriesRepo;
 
     @Autowired
-    public SeasonService(SeasonRepository test, SeriesRepository seriesRepo)
+    public SeasonService(
+            SeasonRepository test,
+            SeriesRepository seriesRepo)
     {
         this.seasonRepo = test;
         this.seriesRepo = seriesRepo;
@@ -24,8 +26,7 @@ public class SeasonService
     public Season createSeason(
             int num,
             String description,
-            UUID series
-    )
+            UUID series)
     {
         Season instance = new Season();
         instance.setNumber(num);

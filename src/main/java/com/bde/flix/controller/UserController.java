@@ -19,19 +19,16 @@ public class UserController
     @GetMapping("/user")
     public UserRecord user(
             @RequestParam(required = true, defaultValue = "defaultUserMail") String mail,
-            @RequestParam(required = true, defaultValue = "defaultUserPasswd") String passwd
-                     )
+            @RequestParam(required = true, defaultValue = "defaultUserPasswd") String passwd)
     {
         User entity = userservice.createuser(
                 mail,
-                passwd
-        );
+                passwd);
 
         return new UserRecord(
                 entity.getId(),
                 entity.getEmail(),
                 entity.getHash());
-
 
         //tutaj potrzeba typow generycznych zeby to dobrze dzialalo
         //zostawie na razie bez flagi debug

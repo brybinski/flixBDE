@@ -33,8 +33,7 @@ public class FilmController
                 description,
 //              releaseDate,
                 poster,
-                director
-        );
+                director);
 
         return new FilmRecord(
                 entity.getTitle(),

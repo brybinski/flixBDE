@@ -25,5 +25,4 @@ public class Season
     private String description;
     @ManyToOne
     private Series series;
-
 }

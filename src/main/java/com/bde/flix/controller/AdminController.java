@@ -28,7 +28,6 @@ public class AdminController
                 entity.getSurname(),
                 entity.getEmail(),
                 entity.getHash(),
-                String.valueOf(entity.getWork_id())
-        );
+                String.valueOf(entity.getWork_id()));
     }
 }

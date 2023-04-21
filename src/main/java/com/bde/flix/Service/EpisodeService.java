@@ -15,7 +15,9 @@ public class EpisodeService
     SeasonRepository seasonRepo;
 
     @Autowired
-    public EpisodeService(EpisodeRepository hist, SeasonRepository seasonRepo)
+    public EpisodeService(
+            EpisodeRepository hist,
+            SeasonRepository seasonRepo)
     {
         this.epiRepo = hist;
         this.seasonRepo = seasonRepo;

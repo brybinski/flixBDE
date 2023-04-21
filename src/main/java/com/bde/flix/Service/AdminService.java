@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminService
 {
-    AdminRepository adminrepo;
+    AdminRepository adminRepo;
     @Autowired
-    public AdminService(AdminRepository adminrepo){
-        this.adminrepo = adminrepo;
+    public AdminService(AdminRepository adminRepo)
+    {
+        this.adminRepo = adminRepo;
     }
 
     public Admin createadmin(
@@ -19,8 +20,7 @@ public class AdminService
             String surname,
             String mail,
             String passwd,
-            String workid
-    )
+            String workid)
     {
         Admin instance = new Admin();
         instance.setName(name);
@@ -28,7 +28,7 @@ public class AdminService
         instance.setEmail(mail);
         instance.setHash(passwd);
         instance.setWork_id(Integer.parseInt(workid));
-        return adminrepo.save(instance);
+        return adminRepo.save(instance);
     }
 }
 

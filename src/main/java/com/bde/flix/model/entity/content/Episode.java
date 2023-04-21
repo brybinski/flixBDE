@@ -26,7 +26,8 @@ public class Episode implements Watchable
 
     @ManyToOne
     private com.bde.flix.model.entity.content.Season season;
-    public int getDuration(){
+    public int getDuration()
+    {
         return this.duration;
     }
 

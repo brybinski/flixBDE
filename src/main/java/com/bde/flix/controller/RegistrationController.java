@@ -18,7 +18,4 @@ public class RegistrationController
     {
         return new Registration(HttpStatus.OK);
     }
-
-
-
 }

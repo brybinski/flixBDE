@@ -16,8 +16,7 @@ public class UserService
     }
 
     public User createuser(String mail,
-                           String passwd
-    )
+                           String passwd)
     {
         User instance = new User();
         instance.setEmail(mail);
