@@ -19,7 +19,6 @@ public class TestControler {
     public Testa test(@RequestParam(required = true, defaultValue = "10") int num) {
         TestEntity entity = testService.createTest(num);
 
-
         return new Testa(entity.getId().toString(), entity.getNumber());
     }
 }
