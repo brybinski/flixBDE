@@ -3,7 +3,6 @@ package com.bde.flix.controller;
 
 import com.bde.flix.Service.TestService;
 import com.bde.flix.model.entity.content.TestEntity;
-import com.bde.flix.model.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,10 +16,10 @@ public class TestControler {
 
 
     @GetMapping("/test-create")
-    public  Test test(@RequestParam(required = true, defaultValue = "10") int num) {
+    public Testa test(@RequestParam(required = true, defaultValue = "10") int num) {
         TestEntity entity = testService.createTest(num);
 
 
-        return new Test(entity.getId().toString(), entity.getNumber());
+        return new Testa(entity.getId().toString(), entity.getNumber());
     }
 }
