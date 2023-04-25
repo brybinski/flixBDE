@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class SearchController {
+public class SearchController
+{
     private static final String ID = "ID".toLowerCase().toLowerCase();
     private static final String DESCRIPTION = "DESCRIPTION".toLowerCase();
     private static final String DIRECTOR = "DIRECTOR".toLowerCase();
@@ -26,7 +27,9 @@ public class SearchController {
     @PostMapping(path = "search",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Search search() {
+
+    public Search search()
+    {
         return new Search(ID, DESCRIPTION, DIRECTOR, DURATION, POSTER, RELEASE_DATE, TITLE);
     }
 }

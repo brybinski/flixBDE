@@ -12,11 +12,13 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Episode implements Watchable {
+public class Episode implements Watchable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     private UUID id;
+
     private int number;
     private String description;
     private String path;
@@ -24,12 +26,14 @@ public class Episode implements Watchable {
 
     @ManyToOne
     private com.bde.flix.model.entity.content.Season season;
-    public int getDuration(){
+    public int getDuration()
+    {
         return this.duration;
     }
 
     @Override
-    public void setDuration(int dur){
+    public void setDuration(int dur)
+    {
         if(dur < 0)
             throw new IllegalArgumentException("Duration must be greater than 0");
 

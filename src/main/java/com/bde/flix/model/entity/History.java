@@ -15,8 +15,8 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-public class History{
-
+public class History
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -33,9 +33,7 @@ public class History{
     @JoinColumn(name = "episode_id")
     private Episode episode;
 
-
     private int watch_time;
-
     private ContentType contentType;
     //
     public static enum ContentType{
@@ -43,14 +41,17 @@ public class History{
         EPISODE
     }
 
-    public UUID getContentId(){
-        if (this.episode != null){
+    public UUID getContentId()
+    {
+        if (this.episode != null)
+        {
             return this.episode.getId();
-        } else if (this.film != null) {
+        }
+        else if (this.film != null)
+        {
             return this.film.getId();
         }
         // empty uuid
         else return new UUID(0L, 0L);
     }
-
 }

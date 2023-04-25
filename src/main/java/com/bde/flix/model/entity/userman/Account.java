@@ -12,16 +12,16 @@ import java.util.UUID;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Account {
+public abstract class Account
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     private UUID id;
+
     @Column(nullable = false, length = 320)
     private String email;
     @Column(nullable = false, length = 64)
-
     private String hash;
     private boolean availSub;
-
 }

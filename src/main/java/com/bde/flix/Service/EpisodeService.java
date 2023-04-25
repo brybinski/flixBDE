@@ -9,18 +9,22 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class EpisodeService {
+public class EpisodeService
+{
     EpisodeRepository epiRepo;
     SeasonRepository seasonRepo;
 
     @Autowired
-    public EpisodeService(EpisodeRepository hist, SeasonRepository seasonRepo){
+    public EpisodeService(
+            EpisodeRepository hist,
+            SeasonRepository seasonRepo)
+    {
         this.epiRepo = hist;
         this.seasonRepo = seasonRepo;
     }
 
-    public Episode createEpisode(UUID season, int num, String description, String path, int duration){
-
+    public Episode createEpisode(UUID season, int num, String description, String path, int duration)
+    {
         Episode instance = new Episode();
         instance.setSeason(seasonRepo.getReferenceById(season));
         instance.setNumber(num);

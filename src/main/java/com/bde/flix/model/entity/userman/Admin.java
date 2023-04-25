@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Admin extends Account {
+public class Admin extends Account
+{
     private String name;
     private String surname;
     private int work_id;
-
 //    set AvailSub to always true
 }
