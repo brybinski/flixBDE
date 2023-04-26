@@ -38,7 +38,7 @@ public class History{
 
     private ContentType contentType;
     //
-    public static enum ContentType{
+    public enum ContentType{
         FILM,
         EPISODE
     }

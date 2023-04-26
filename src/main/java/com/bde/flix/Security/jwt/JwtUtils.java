@@ -12,10 +12,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 import io.jsonwebtoken.*;
 
+import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtUtils {
+
+    private static final Key signingKey = new Key() {
+        @Override
+        public String getAlgorithm() {
+            return null;
+        }
+
+        @Override
+        public String getFormat() {
+            return null;
+        }
+
+        @Override
+        public byte[] getEncoded() {
+            return new byte[0];
+        }
+    };
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${bde.flix.app.jwtSecret}")
@@ -38,22 +56,23 @@ public class JwtUtils {
 
     public ResponseCookie generateJwtCookie(AccountDetailsServiceImplement userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
-        ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
-        return cookie;
+        return ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
     }
 
     public ResponseCookie getCleanJwtCookie() {
-        ResponseCookie cookie = ResponseCookie.from(jwtCookie, null).path("/api").build();
-        return cookie;
+        return ResponseCookie.from(jwtCookie, null).path("/api").build();
     }
 
     public String getUserNameFromJwtToken(String token) {
+
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
+//    TODO: Update hashing algorithms this shit is unsecure af
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            //for eg here we pass String literal instead of recommended hash
+            Jwts.parserBuilder().setSigningKey(jwtSecret).build().parse(authToken);
             return true;
         } catch (SignatureException e) {
             logger.error("Invalid JWT signature: {}", e.getMessage());
