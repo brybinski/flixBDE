@@ -1,5 +1,6 @@
 package com.bde.flix.Service;
 
+import com.bde.flix.Security.Role;
 import com.bde.flix.model.entity.userman.Admin;
 import com.bde.flix.model.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class GenerateAdminService {
     ){
         Admin instance = new Admin();
         instance.setName(name);
+        instance.setRole(Role.ROLE_ADMIN);
         instance.setSurname(surname);
         instance.setEmail(mail);
         instance.setHash(passwd);

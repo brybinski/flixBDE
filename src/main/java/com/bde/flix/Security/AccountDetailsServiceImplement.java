@@ -23,8 +23,4 @@ public class AccountDetailsServiceImplement implements UserDetailsService {
         return AccountDetails.build(user);
     }
 
-//    TODO: return correct user
-    public String getUsername() {
-        return " ";
-    }
 }

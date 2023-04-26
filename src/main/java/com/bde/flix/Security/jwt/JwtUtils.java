@@ -1,6 +1,7 @@
 package com.bde.flix.Security.jwt;
 
 
+import com.bde.flix.Security.AccountDetails;
 import com.bde.flix.Security.AccountDetailsServiceImplement;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ public class JwtUtils {
         }
     }
 
-    public ResponseCookie generateJwtCookie(AccountDetailsServiceImplement userPrincipal) {
+    public ResponseCookie generateJwtCookie(AccountDetails userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
         return ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
     }

@@ -1,5 +1,6 @@
 package com.bde.flix.model.entity.userman;
 
+import com.bde.flix.Security.Role;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class Admin extends Account {
     private String name;
     private String surname;
     private int work_id;
+
 
 //    set AvailSub to always true
 }

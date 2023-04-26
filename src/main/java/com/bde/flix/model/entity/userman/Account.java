@@ -1,4 +1,5 @@
 package com.bde.flix.model.entity.userman;
+import com.bde.flix.Security.Role;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -21,6 +22,7 @@ public abstract class Account {
     private String email;
     @Column(nullable = false, length = 64)
 
+    private Role role;
     private String hash;
     private boolean availSub;
 
