@@ -1,6 +1,7 @@
-package com.bde.flix.Security;
+package com.bde.flix.Security.jwt;
 
 
+import com.bde.flix.Security.AccountDetailsServiceImplement;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 import io.jsonwebtoken.*;
+
+import java.util.Date;
 
 @Component
 public class JwtUtils {
@@ -33,7 +36,7 @@ public class JwtUtils {
         }
     }
 
-    public ResponseCookie generateJwtCookie(UserDetailsServiceImplement userPrincipal) {
+    public ResponseCookie generateJwtCookie(AccountDetailsServiceImplement userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
         return cookie;

@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserDetailsServiceImplement implements UserDetailsService {
+public class AccountDetailsServiceImplement implements UserDetailsService {
 
     @Autowired
     AccountRepository accRepo;
@@ -23,7 +23,8 @@ public class UserDetailsServiceImplement implements UserDetailsService {
         return AccountDetails.build(user);
     }
 
+//    TODO: return correct user
     public String getUsername() {
-        return
+        return " ";
     }
 }

@@ -29,8 +29,8 @@ public class AccountDetails implements UserDetails {
         this.authorities = authorities;
     }
     public static AccountDetails build(Account user) {
-        // TODO: get authority
 
+//        TODO: get authority
 //        List<GrantedAuthority> authorities = user.getRoles().stream()
 //                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
 //                .collect(Collectors.toList());
