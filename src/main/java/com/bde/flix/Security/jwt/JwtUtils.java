@@ -72,7 +72,7 @@ public class JwtUtils {
 //    TODO: Update hashing algorithms this shit is unsecure af
     public boolean validateJwtToken(String authToken) {
         try {
-            //for eg here we pass String literal instead of recommended hash
+            //for e.g. here we pass String literal instead of recommended hash
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parse(authToken);
             return true;
         } catch (SignatureException e) {
