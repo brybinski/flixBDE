@@ -1,4 +1,4 @@
-package com.bde.flix.Security;
+package com.bde.flix.Security.Account;
 
 import com.bde.flix.model.entity.userman.Account;
 import com.bde.flix.model.repository.AccountRepository;

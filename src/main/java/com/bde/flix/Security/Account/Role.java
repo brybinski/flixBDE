@@ -1,7 +1,6 @@
-package com.bde.flix.Security;
+package com.bde.flix.Security.Account;
 
 public enum Role {
     ROLE_USER,
-    ROLE_MODERATOR,
     ROLE_ADMIN
 }

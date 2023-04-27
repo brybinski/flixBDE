@@ -1,5 +1,5 @@
 package com.bde.flix.model.entity.userman;
-import com.bde.flix.Security.Role;
+import com.bde.flix.Security.Account.Role;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -18,7 +18,8 @@ public abstract class Account {
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     private UUID id;
-    @Column(nullable = false, length = 320)
+
+    @Column(nullable = false, length = 320, unique = true)
     private String email;
     @Column(nullable = false, length = 64)
 

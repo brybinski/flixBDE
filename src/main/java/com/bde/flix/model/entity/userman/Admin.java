@@ -1,6 +1,5 @@
 package com.bde.flix.model.entity.userman;
 
-import com.bde.flix.Security.Role;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

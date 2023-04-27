@@ -1,4 +1,4 @@
-package com.bde.flix.Security;
+package com.bde.flix.Security.Account;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public interface AccountDetailsService {

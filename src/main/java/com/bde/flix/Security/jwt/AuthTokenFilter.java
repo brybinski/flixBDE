@@ -3,7 +3,7 @@ package com.bde.flix.Security.jwt;
 import java.io.IOException;
 
 
-import com.bde.flix.Security.AccountDetailsServiceImplement;
+import com.bde.flix.Security.Account.AccountDetailsServiceImplement;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

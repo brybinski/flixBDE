@@ -1,8 +1,8 @@
-package com.bde.flix.Security;
+package com.bde.flix.Security.Account;
 
 
 import com.bde.flix.model.entity.userman.Account;
-import com.bde.flix.model.entity.userman.Admin;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
+@Getter
 public class AccountDetails implements UserDetails {
     private UUID id;
     private String email;
@@ -45,14 +44,10 @@ public class AccountDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
     public String getUsername() {
         return this.email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -73,8 +68,5 @@ public class AccountDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
-
 
 }

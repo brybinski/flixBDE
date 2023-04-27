@@ -1,8 +1,7 @@
 package com.bde.flix.Security.jwt;
 
 
-import com.bde.flix.Security.AccountDetails;
-import com.bde.flix.Security.AccountDetailsServiceImplement;
+import com.bde.flix.Security.Account.AccountDetails;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 import io.jsonwebtoken.*;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Date;
 
@@ -37,8 +37,9 @@ public class JwtUtils {
     };
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${bde.flix.app.jwtSecret}")
-    private String jwtSecret;
+    private final String jwtSecretPlainText ="gVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2r5u8x/A?D(G+Kb";
+
+    private final Key jwtSecret = new SecretKeySpec(jwtSecretPlainText.getBytes(), "HmacSHA512");
 
     @Value("${bde.flix.app.jwtExpirationMs}")
     private int jwtExpirationMs;

@@ -1,5 +1,6 @@
 package com.bde.flix.Security;
 
+import com.bde.flix.Security.Account.AccountDetailsServiceImplement;
 import com.bde.flix.Security.jwt.AuthEntryPointJwt;
 import com.bde.flix.Security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +54,14 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/api/authentication/**").permitAll()
                 .requestMatchers("/api/test/**").permitAll()
+                .requestMatchers("/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 
+        http.headers().frameOptions().sameOrigin();
         http.authenticationProvider(authenticationProvider());
-
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
