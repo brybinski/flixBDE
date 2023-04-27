@@ -14,7 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 
-public class Card {
+public class Card
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
@@ -22,13 +23,9 @@ public class Card {
 
     @OneToOne(orphanRemoval = true)
     private User user;
-
     private long card_number;
     private int cvv;
     private YearMonth expire_date;
-    
     @Column(nullable = false, length = 64)
     private String cardHolder;
-
-
 }

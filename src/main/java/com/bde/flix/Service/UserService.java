@@ -7,19 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenerateUserService {
-    UserRepository userrepo;
+public class UserService
+{
+    UserRepository userRepo;
     @Autowired
-    public GenerateUserService(UserRepository userrepo){
-        this.userrepo = userrepo;
+    public UserService(UserRepository userRepo)
+    {
+        this.userRepo = userRepo;
     }
 
-    public User createuser(String mail, String passwd){
+    public User createuser(String mail,
+                           String passwd)
+    {
         User instance = new User();
         instance.setEmail(mail);
         instance.setRole(Role.ROLE_USER);
         instance.setHash(passwd);
-        return userrepo.save(instance);
+        return userRepo.save(instance);
     }
 
 }

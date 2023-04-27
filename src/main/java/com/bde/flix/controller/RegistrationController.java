@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class RegistrationController {
-
+public class RegistrationController
+{
 //    TODO: mail sending function
 //    private String token = "abcdf";
     @CrossOrigin(origins = "http://localhost:8080")
@@ -14,10 +14,8 @@ public class RegistrationController {
     public Registration GetInfo(@RequestParam(required = true) String email,
                                 @RequestParam(required = true) String password,
                                 @RequestParam(required = true) String name,
-                                @RequestParam(required = true) String surname){
+                                @RequestParam(required = true) String surname)
+    {
         return new Registration(HttpStatus.OK);
     }
-
-
-
 }

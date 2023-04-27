@@ -15,7 +15,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class HistoryService {
+public class HistoryService
+{
     HistoryRepository histRepo;
     EpisodeRepository episodeRepo;
     FilmRepository filmRepo;
@@ -25,7 +26,14 @@ public class HistoryService {
 
 
     @Autowired
-    public HistoryService(AccountRepository accRepo, HistoryRepository hist,UserRepository userRepo, AdminRepository adminRepo, EpisodeRepository episodeRepo, FilmRepository filmRepo){
+    public HistoryService(
+            AccountRepository accRepo,
+            HistoryRepository hist,
+            UserRepository userRepo,
+            AdminRepository adminRepo,
+            EpisodeRepository episodeRepo,
+            FilmRepository filmRepo)
+    {
         this.histRepo = hist;
         this.episodeRepo = episodeRepo;
         this.filmRepo = filmRepo;
@@ -34,23 +42,35 @@ public class HistoryService {
         this.accountRepo = accRepo;
     }
 
-    public History createHistory(UUID content_id, UUID account_id, boolean episode, int duration) throws InvalidAttributeValueException {
+    public History createHistory(
+            UUID content_id,
+            UUID account_id,
+            boolean episode,
+            int duration) throws InvalidAttributeValueException
+    {
         History instance = new History();
-        if (episode){
+        if (episode)
+        {
             Optional<Episode> con = episodeRepo.findById(content_id);
-            if (con.isEmpty()){
+            if (con.isEmpty())
+            {
                 throw new InvalidAttributeValueException("No episode with given UUID");
             }
-            else{
+            else
+            {
                 instance.setEpisode(episodeRepo.getReferenceById(content_id));
                 instance.setContentType(History.ContentType.EPISODE);
-            }        }
-        else{
+            }
+        }
+        else
+        {
             Optional<Film> con = filmRepo.findById(content_id);
-            if (con.isEmpty()){
+            if (con.isEmpty())
+            {
                 throw new InvalidAttributeValueException("No film with given UUID");
             }
-            else{
+            else
+            {
                 instance.setFilm(filmRepo.getReferenceById(content_id));
                 instance.setContentType(History.ContentType.FILM);
             }
@@ -60,19 +80,23 @@ public class HistoryService {
         instance.setWatch_time(duration);
 
         Optional<User> acc = userRepo.findById(account_id);
-        if (acc.isEmpty()){
+        if (acc.isEmpty())
+        {
             Optional<Admin> adm = adminRepo.findById(account_id);
             if(adm.isEmpty())
+            {
                 throw new InvalidAttributeValueException("No account with given UUID");
+            }
             else
+            {
                 instance.setAccount(accountRepo.getReferenceById(account_id));
+            }
         }
-        else{
+        else
+        {
             instance.setAccount(accountRepo.getReferenceById(account_id));
         }
-
         return histRepo.save(instance);
-
     }
 }
 

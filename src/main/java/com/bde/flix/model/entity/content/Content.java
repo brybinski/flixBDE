@@ -12,7 +12,8 @@ import java.util.UUID;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Content {
+public abstract class Content
+{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
@@ -34,7 +35,5 @@ public abstract class Content {
 
 //    @ElementCollection
 //    private ArrayList<String> genre_tag;
-
-
 
 }

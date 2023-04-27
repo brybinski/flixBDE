@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Series extends com.bde.flix.model.entity.content.Content {
-
-
+public class Series extends com.bde.flix.model.entity.content.Content
+{
 }

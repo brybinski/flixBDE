@@ -11,9 +11,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
-public class User extends Account {
-
+public class User extends Account
+{
     private int sub_type;
     private LocalDate sub_end;
-
 }
