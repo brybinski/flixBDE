@@ -1,6 +1,6 @@
 package com.bde.flix.controller.Generate;
 
-import com.bde.flix.Service.SeasonService;
+import com.bde.flix.service.SeasonService;
 import com.bde.flix.model.entity.content.Season;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

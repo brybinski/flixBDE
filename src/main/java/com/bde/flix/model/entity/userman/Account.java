@@ -1,4 +1,5 @@
 package com.bde.flix.model.entity.userman;
+import com.bde.flix.security.Account.Role;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -12,16 +13,18 @@ import java.util.UUID;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Account
-{
+public abstract class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     private UUID id;
 
-    @Column(nullable = false, length = 320)
+    @Column(nullable = false, length = 320, unique = true)
     private String email;
     @Column(nullable = false, length = 64)
+
+    private Role role;
     private String hash;
     private boolean availSub;
+
 }

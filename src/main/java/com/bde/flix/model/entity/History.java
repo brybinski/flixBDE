@@ -36,7 +36,7 @@ public class History
     private int watch_time;
     private ContentType contentType;
     //
-    public static enum ContentType{
+    public enum ContentType{
         FILM,
         EPISODE
     }

@@ -1,5 +1,6 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
+import com.bde.flix.security.Account.Role;
 import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserService
     {
         User instance = new User();
         instance.setEmail(mail);
-        // TODO: Funkcja hashujaca
+        instance.setRole(Role.ROLE_USER);
         instance.setHash(passwd);
         return userRepo.save(instance);
     }

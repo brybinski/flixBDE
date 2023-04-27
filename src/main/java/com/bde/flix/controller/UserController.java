@@ -1,7 +1,7 @@
 package com.bde.flix.controller;
 
 //import com.bde.flix.FlixApplication;
-import com.bde.flix.Service.UserService;
+import com.bde.flix.service.UserService;
 import com.bde.flix.model.entity.userman.User;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
