@@ -56,7 +56,8 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests().requestMatchers("/api/authentication/**").permitAll()
                 .requestMatchers("/api/test/**").permitAll()
-                .requestMatchers("/**").permitAll()
+                // TODO: remove after deployment
+                .requestMatchers("/").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 
