@@ -1,7 +1,7 @@
 package com.bde.flix.Security;
 
 import com.bde.flix.Security.payloads.RegisterResponse;
-import com.bde.flix.Service.GenerateUserService;
+import com.bde.flix.Service.UserService;
 import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.Security.Account.AccountDetails;
 import com.bde.flix.Security.payloads.SignInResponse;
@@ -36,7 +36,7 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtl;
     @Autowired
-    GenerateUserService usrSrvc;
+    UserService usrSrvc;
 
 
     @PostMapping("/signin")
