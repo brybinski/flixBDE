@@ -1,4 +1,4 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
 import com.bde.flix.model.entity.content.TestEntity;
 import com.bde.flix.model.repository.TestRepository;

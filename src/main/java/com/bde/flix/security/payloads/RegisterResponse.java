@@ -1,4 +1,4 @@
-package com.bde.flix.Security.payloads;
+package com.bde.flix.security.payloads;
 
 import java.util.UUID;
 

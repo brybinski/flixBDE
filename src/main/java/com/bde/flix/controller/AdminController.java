@@ -1,6 +1,6 @@
 package com.bde.flix.controller;
 
-import com.bde.flix.Service.AdminService;
+import com.bde.flix.service.AdminService;
 import com.bde.flix.model.entity.userman.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

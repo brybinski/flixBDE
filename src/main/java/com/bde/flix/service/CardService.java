@@ -1,13 +1,11 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
 import com.bde.flix.model.entity.userman.Card;
-import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.model.repository.CardRepository;
 import com.bde.flix.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.YearMonth;
 import java.util.UUID;
 
 @Service

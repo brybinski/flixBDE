@@ -1,6 +1,6 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
-import com.bde.flix.Security.Account.Role;
+import com.bde.flix.security.Account.Role;
 import com.bde.flix.model.entity.userman.Admin;
 import com.bde.flix.model.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;

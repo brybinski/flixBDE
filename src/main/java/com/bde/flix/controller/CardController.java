@@ -1,9 +1,8 @@
 package com.bde.flix.controller;
 
-import com.bde.flix.Service.CardService;
+import com.bde.flix.service.CardService;
 import com.bde.flix.model.entity.userman.Card;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

@@ -1,7 +1,7 @@
-package com.bde.flix.Security.jwt;
+package com.bde.flix.security.jwt;
 
 
-import com.bde.flix.Security.Account.AccountDetails;
+import com.bde.flix.security.Account.AccountDetails;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;

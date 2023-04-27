@@ -1,8 +1,8 @@
-package com.bde.flix.Security;
+package com.bde.flix.security;
 
-import com.bde.flix.Security.Account.AccountDetailsServiceImplement;
-import com.bde.flix.Security.jwt.AuthEntryPointJwt;
-import com.bde.flix.Security.jwt.AuthTokenFilter;
+import com.bde.flix.security.Account.AccountDetailsServiceImplement;
+import com.bde.flix.security.jwt.AuthEntryPointJwt;
+import com.bde.flix.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

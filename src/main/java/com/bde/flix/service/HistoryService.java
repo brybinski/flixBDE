@@ -1,9 +1,8 @@
-package com.bde.flix.Service;
+package com.bde.flix.service;
 
 import com.bde.flix.model.entity.History;
 import com.bde.flix.model.entity.content.Episode;
 import com.bde.flix.model.entity.content.Film;
-import com.bde.flix.model.entity.userman.Account;
 import com.bde.flix.model.entity.userman.Admin;
 import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.model.repository.*;

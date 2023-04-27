@@ -1,5 +1,5 @@
 package com.bde.flix.model.entity.userman;
-import com.bde.flix.Security.Account.Role;
+import com.bde.flix.security.Account.Role;
 import jakarta.persistence.*;
 
 import lombok.Getter;

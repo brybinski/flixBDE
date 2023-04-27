@@ -1,11 +1,11 @@
-package com.bde.flix.Security;
+package com.bde.flix.security;
 
-import com.bde.flix.Security.payloads.RegisterResponse;
-import com.bde.flix.Service.UserService;
+import com.bde.flix.security.payloads.RegisterResponse;
+import com.bde.flix.service.UserService;
 import com.bde.flix.model.entity.userman.User;
-import com.bde.flix.Security.Account.AccountDetails;
-import com.bde.flix.Security.payloads.SignInResponse;
-import com.bde.flix.Security.jwt.JwtUtils;
+import com.bde.flix.security.Account.AccountDetails;
+import com.bde.flix.security.payloads.SignInResponse;
+import com.bde.flix.security.jwt.JwtUtils;
 import com.bde.flix.model.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

@@ -1,9 +1,9 @@
-package com.bde.flix.Security.jwt;
+package com.bde.flix.security.jwt;
 
 import java.io.IOException;
 
 
-import com.bde.flix.Security.Account.AccountDetailsServiceImplement;
+import com.bde.flix.security.Account.AccountDetailsServiceImplement;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
