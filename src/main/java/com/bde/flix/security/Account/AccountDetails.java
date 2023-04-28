@@ -48,7 +48,6 @@ public class AccountDetails implements UserDetails {
         return this.email;
     }
 
-
     @Override
     public boolean isAccountNonExpired() {
         return true;

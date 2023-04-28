@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
     @Autowired
     AccountDetailsServiceImplement userDetailsService;
@@ -44,6 +46,7 @@ public class WebSecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
+    //TODO: Stronger Encryption, custom encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -56,14 +59,16 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests().requestMatchers("/api/authentication/**").permitAll()
                 .requestMatchers("/api/test/**").permitAll()
-                // TODO: remove after deployment
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 
+        //h2-console needs this
         http.headers().frameOptions().sameOrigin();
+
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
 
         return http.build();
     }
