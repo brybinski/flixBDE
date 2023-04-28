@@ -5,6 +5,11 @@ import com.bde.flix.model.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.UUID;
+
 @Service
 public class FilmService
 {
@@ -22,8 +27,9 @@ public class FilmService
             String description,
 //          LocalDate releaseDate,
             String poster,
-            String director
-//          ArrayList<String> actors_cast
+            String director,
+            Set<String> actors_cast,
+            Set<String> genreTag
     )
     {
         Film instance = new Film();
@@ -33,12 +39,8 @@ public class FilmService
 //      instance.setReleaseDate(releaseDate);
         instance.setPoster(poster);
         instance.setDirector(director);
-//      instance.setActors_cast(actors_cast);
+        instance.setActorsCast(actors_cast);
+        instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
     }
-    // TODO: Casting of string to arraylist
-//    public Film addCast(String actors_cast)
-//    {
-//
-//    }
 }

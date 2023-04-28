@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -29,11 +31,9 @@ public abstract class Content
     private String poster;
     @Column(nullable = true, length = 128)
     private String director;
-
-//    @ElementCollection
-//    private ArrayList<String> actors_cast;
-
-//    @ElementCollection
-//    private ArrayList<String> genre_tag;
+    @ElementCollection
+    private Set<String> actorsCast;
+    @ElementCollection
+    private Set<String> genreTag;
 
 }
