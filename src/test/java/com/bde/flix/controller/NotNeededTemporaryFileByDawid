@@ -1,6 +1,6 @@
 ~AdminController
- CardController
- CMSController
+~CardController
++CMSController
  FilmController
  GreetingController
 +HelloController
