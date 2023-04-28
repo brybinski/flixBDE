@@ -29,6 +29,8 @@ class AdminControllerTest extends AdminController {
         String fakeMail = "testMail" + numberStr;
         String fakePasswd = "testPasswd" + numberStr;
         String fakeWorkid = "555555" + numberInt;
+        //TODO: repair instantiating testEntity
+        //test fails on this line vv
         Admin testEntity = testAdminService.createadmin(
                 fakeName,
                 fakeSurname,
