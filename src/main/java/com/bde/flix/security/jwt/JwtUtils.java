@@ -37,6 +37,7 @@ public class JwtUtils {
     };
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
+    //TODO: remove when deployed
     private final String jwtSecretPlainText ="gVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2r5u8x/A?D(G+Kb";
 
     private final Key jwtSecret = new SecretKeySpec(jwtSecretPlainText.getBytes(), "HmacSHA512");
@@ -67,13 +68,13 @@ public class JwtUtils {
 
     public String getUserNameFromJwtToken(String token) {
 
+        // FIXME: depreciated
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
 //    TODO: Update hashing algorithms this shit is unsecure af
     public boolean validateJwtToken(String authToken) {
         try {
-            //for e.g. here we pass String literal instead of recommended hash
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parse(authToken);
             return true;
         } catch (SignatureException e) {
