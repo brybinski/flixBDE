@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController
 {
-    private static final Boolean hardcodedTemplate = true;
+    public static final Boolean hardcodedTemplate = true;
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/Hello")
