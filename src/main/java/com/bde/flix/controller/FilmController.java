@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 public class FilmController
 {
@@ -22,8 +24,9 @@ public class FilmController
                                      @RequestParam(required = true) String description,
 //                                   @RequestParam(required = true) String releaseDate,
                                      @RequestParam(required = true) String poster,
-                                     @RequestParam(required = true) String director
-//                                   @RequestParam(required = true) String actors_cast
+                                     @RequestParam(required = true) String director,
+                                     @RequestParam(required = true) Set<String> actors_cast,
+                                     @RequestParam(required = true) Set<String>genreTags
                                      )
     {
         Film entity = filmService.createFilm(
@@ -32,7 +35,9 @@ public class FilmController
                 description,
 //              releaseDate,
                 poster,
-                director);
+                director,
+                actors_cast,
+                genreTags);
 
         return new FilmRecord(
                 entity.getTitle(),
@@ -41,7 +46,8 @@ public class FilmController
                 "00.00.0000",
                 entity.getPoster(),
                 entity.getDirector(),
-                "dummy value"
+                entity.getActorsCast(),
+                entity.getGenreTag()
         );
     }
 }
