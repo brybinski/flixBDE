@@ -48,7 +48,6 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(auth);
         AccountDetails accDetails = (AccountDetails) auth.getPrincipal();
         ResponseCookie jwtCookie = jwtUtl.generateJwtCookie(accDetails);
-
         List<String> roles = accDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
