@@ -25,4 +25,38 @@ public class GenerateRandomValues {
 
         return ThreadLocalRandom.current().nextLong(min, max + 1);
     }
+
+    /**
+     * Returns String of specified length made up of numbers.
+     * The check for length being over 19 is there because of long limits.
+     * @param length Desired length
+     * @return String String made up of numbers
+     */
+    public static String StringLengthOfN(long length) {
+        String output = "";
+        if (length > 19) {
+            long numberOfPasses = length / 19;
+            long remainder = length % 19;
+            length = 19;
+            for (int i = 0; i < numberOfPasses; i++) {
+                long min = (long) Math.pow(10, length - 1);
+                long max = ((long) Math.pow(10, length)) - 1;
+                output += String.valueOf(ThreadLocalRandom.current().nextLong(min, max + 1));
+            }
+            long min = (long) Math.pow(10, remainder - 1);
+            long max = ((long) Math.pow(10, remainder)) - 1;
+            output += String.valueOf(ThreadLocalRandom.current().nextLong(min, max + 1));
+            return output;
+
+        } else if (length < 1) {
+            return "";
+        } else {
+
+            long min = (long) Math.pow(10, length - 1);
+            long max = ((long) Math.pow(10, length)) - 1;
+            output += String.valueOf(ThreadLocalRandom.current().nextLong(min, max + 1));
+
+            return output;
+        }
+    }
 }
