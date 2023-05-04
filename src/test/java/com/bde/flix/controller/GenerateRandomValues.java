@@ -9,7 +9,7 @@ public class GenerateRandomValues {
      * For example lets take length equal to 5:
      * It will generate long from 10000..99999
      * If specified length is out of supported values,
-     * max/min is applied instead.
+     * Exception is thrown.
      * Can be easily turned into String by String.valueOf()
      * @param length    Desired length(1..19)
      * @return long     Long of specified length
