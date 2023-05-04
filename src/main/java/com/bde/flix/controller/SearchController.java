@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SearchController
 {
-    private static final String ID = "ID".toLowerCase().toLowerCase();
-    private static final String DESCRIPTION = "DESCRIPTION".toLowerCase();
-    private static final String DIRECTOR = "DIRECTOR".toLowerCase();
-    private static final String DURATION = "DURATION".toLowerCase();
-    private static final String POSTER = "POSTER".toLowerCase();
-    private static final String RELEASE_DATE = "RELEASE_DATE".toLowerCase();
-    private static final String TITLE = "TITLE".toLowerCase();
+    private static final String ID = "id";
+    private static final String DESCRIPTION = "description";
+    private static final String DIRECTOR = "director";
+    private static final String DURATION = "duration";
+    private static final String POSTER = "poster";
+    private static final String RELEASE_DATE = "release_date";
+    private static final String TITLE = "title";
 
     @CrossOrigin(origins = "http://localhost:8080")
     /*
