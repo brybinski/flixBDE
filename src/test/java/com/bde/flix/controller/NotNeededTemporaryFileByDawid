@@ -6,6 +6,6 @@
 +HelloController
  LoginController
 +RegistrationController
- SearchController
++SearchController
 XTestController
 ~UserController
