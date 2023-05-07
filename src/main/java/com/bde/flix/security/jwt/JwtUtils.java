@@ -19,22 +19,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private static final Key signingKey = new Key() {
-        @Override
-        public String getAlgorithm() {
-            return null;
-        }
 
-        @Override
-        public String getFormat() {
-            return null;
-        }
-
-        @Override
-        public byte[] getEncoded() {
-            return new byte[0];
-        }
-    };
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     //TODO: remove when deployed
@@ -68,24 +53,24 @@ public class JwtUtils {
     }
 
     public ResponseCookie getCleanJwtCookie() {
-        return ResponseCookie.from(jwtCookie, null).path("/api").build();
+        return ResponseCookie.from(jwtCookie, "").path("/api").build();
     }
 
     public String getUserNameFromJwtToken(String token) {
 
-        // FIXME: depreciated
-        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
+
     }
 
-//    TODO: Update hashing algorithms this shit is unsecure af
+    //TODO: maybe add iss and verification of iss for oauth
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parse(authToken);
             return true;
-        } catch (SignatureException e) {
-            logger.error("Invalid JWT signature: {}", e.getMessage());
+        } catch (SecurityException e) {
+            logger.error("JWT token security violation: {}", e.getMessage());
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token: {}", e.getMessage());
+            logger.error("JWT token is invalid: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
             logger.error("JWT token is expired: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {
