@@ -1,4 +1,0 @@
-POST http://localhost:8080/api/authentication/signin
-Content-Type: application/x-www-form-urlencoded
-
-email=ryba@gmail.com&password=1234567890

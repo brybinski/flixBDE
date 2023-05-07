@@ -54,7 +54,7 @@ public class AuthController {
 
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new SignInResponse(accDetails.getId(), accDetails.getEmail(), roles));
+                .body(new SignInResponse(accDetails.getEmail(), roles));
     }
 
     @PostMapping("/signup")
@@ -67,7 +67,7 @@ public class AuthController {
         User usr = usrSrvc.createuser(email,passEnc.encode(password));
 
 
-        return ResponseEntity.ok().body(new RegisterResponse(usr.getId(),usr.getEmail(),"account registered"));
+        return ResponseEntity.ok().body(new RegisterResponse(usr.getEmail(),"account registered"));
     }
 
     @PostMapping("/signout")
