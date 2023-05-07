@@ -43,7 +43,7 @@ public class JwtUtils {
     private final Key jwtSecret = new SecretKeySpec(jwtSecretPlainText.getBytes(), "HmacSHA512");
 
 
-    private long jwtExpirationMs = 2629800000;
+    private long jwtExpirationMs = 2629800000L;
 
     @Value("${bde.flix.app.jwtCookieName}")
     private String jwtCookie;
