@@ -42,8 +42,8 @@ public class JwtUtils {
 
     private final Key jwtSecret = new SecretKeySpec(jwtSecretPlainText.getBytes(), "HmacSHA512");
 
-    @Value("${bde.flix.app.jwtExpirationMs}")
-    private int jwtExpirationMs;
+
+    private long jwtExpirationMs = 2629800000;
 
     @Value("${bde.flix.app.jwtCookieName}")
     private String jwtCookie;
@@ -102,7 +102,7 @@ public class JwtUtils {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(jwtSecret, SignatureAlgorithm.HS512)
                 .compact();
     }
 }
