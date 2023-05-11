@@ -24,8 +24,10 @@ class RegistrationControllerTest extends RegistrationController {
         String testName = "testName";
         String testSurname = "testSurname";
         Registration testStatus = GetInfo(testEmail, testPassword, testName, testSurname);
+        //We check first if the object returned is of the correct type;
+        //Then to see if it is the correct response.
         assertTrue(testStatus.status() instanceof HttpStatus);
-        assertTrue(testStatus.status() == HttpStatus.OK);
+        assertSame(testStatus.status(), HttpStatus.OK);
         //fail();
     }
 }

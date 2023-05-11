@@ -40,3 +40,4 @@ out/
 /gradle/
 /datbase/db_bdeflix.trace.db
 /datbase/db_bdeflix.mv.db
+/src/test/java/com/bde/flix/controller/NotNeededTemporaryFileByDawid
