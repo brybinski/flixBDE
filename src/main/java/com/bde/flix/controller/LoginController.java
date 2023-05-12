@@ -8,7 +8,7 @@ public class LoginController
     private String token = "abcdf";
     private int uuid = 54321;
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/api/login")
 
     public Login GetCredentials(@RequestParam(required = true) String email,
                                 @RequestParam(required = true) String password)

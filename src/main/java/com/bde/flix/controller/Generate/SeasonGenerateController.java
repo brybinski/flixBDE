@@ -15,7 +15,7 @@ public class SeasonGenerateController {
     @Autowired
     private SeasonService seasonService;
 
-    @GetMapping("/season-create")
+    @GetMapping("api/season-create")
     public SeasonGenerateRecord test(@RequestParam(required = true) UUID series,
                                       @RequestParam(required = true) int num,
                                       @RequestParam(required = false, defaultValue = "opis") String dscrp

@@ -16,7 +16,7 @@ public class EpisodeGenerateController {
     @Autowired
     private EpisodeService episodeService;
 
-    @GetMapping("/episode-create")
+    @GetMapping("api/episode-create")
     public  EpisodeGenerateRecord test(@RequestParam(required = true) UUID season,
                                        @RequestParam(required = true) int num,
                                        @RequestParam(required = false, defaultValue = "opis") String dscrp,

@@ -19,7 +19,7 @@ public class HistoryGenerateControler {
     private HistoryService historyService;
 
     //TODO: Find better solution
-    @GetMapping("/hist-create")
+    @GetMapping("api/hist-create")
     public  <T> T genHist(@RequestParam(required = true) UUID content_uuid,
                       @RequestParam(required = true) UUID acc_uuid,
                       @RequestParam(required = true) boolean episode,

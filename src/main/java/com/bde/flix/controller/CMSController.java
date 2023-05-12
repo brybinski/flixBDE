@@ -10,7 +10,7 @@ public class CMSController
     private static final Boolean hardcodedTemplate = true;
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("/CMS")
+    @GetMapping("/api/CMS")
     public CMS cms()
     {
         return new CMS(hardcodedTemplate);

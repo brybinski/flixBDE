@@ -9,7 +9,7 @@ public class RegistrationController
 //    TODO: mail sending function
 //    private String token = "abcdf";
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/api/register")
 
     public Registration GetInfo(@RequestParam(required = true) String email,
                                 @RequestParam(required = true) String password,
