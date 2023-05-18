@@ -1,5 +1,5 @@
 +AdminController
-~CardController
++CardController
 +CMSController
  FilmController
 +GreetingController
@@ -8,4 +8,4 @@
 +RegistrationController
 +SearchController
 XTestController
-~UserController
++UserController
