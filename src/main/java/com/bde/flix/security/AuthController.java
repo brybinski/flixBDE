@@ -1,12 +1,12 @@
 package com.bde.flix.security;
 
-import com.bde.flix.security.payloads.RegisterResponse;
-import com.bde.flix.service.UserService;
 import com.bde.flix.model.entity.userman.User;
-import com.bde.flix.security.Account.AccountDetails;
-import com.bde.flix.security.payloads.SignInResponse;
-import com.bde.flix.security.jwt.JwtUtils;
 import com.bde.flix.model.repository.AccountRepository;
+import com.bde.flix.security.Account.AccountDetails;
+import com.bde.flix.security.jwt.JwtUtils;
+import com.bde.flix.security.payloads.RegisterResponse;
+import com.bde.flix.security.payloads.SignInResponse;
+import com.bde.flix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -78,4 +78,5 @@ public class AuthController {
                 .body("Session killed");
 
     }
+
 }
