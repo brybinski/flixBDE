@@ -13,7 +13,7 @@ public class AdminController
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin")
+    @GetMapping("/api/admin")
     public AdminRecord admin(
             @RequestParam(required = true, defaultValue = "defaultAdminName") String name,
             @RequestParam(required = true, defaultValue = "defaultAdminSurname") String surname,

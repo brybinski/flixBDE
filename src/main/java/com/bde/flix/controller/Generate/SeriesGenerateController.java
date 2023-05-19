@@ -14,7 +14,7 @@ public class SeriesGenerateController {
     @Autowired
     private SeriesService seriesService;
 
-    @GetMapping("/series-create")
+    @GetMapping("api/series-create")
     public  SeriesGenerateRecord test(
                                        @RequestParam(required = true) String title,
                                        @RequestParam(required = false, defaultValue = "opis") String dscrp,

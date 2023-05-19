@@ -43,4 +43,9 @@ public class FilmService
         instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
     }
+
+    public long  deleteFilm(String title)
+    {
+        return filmRepo.deleteByTitle(title);
+    }
 }

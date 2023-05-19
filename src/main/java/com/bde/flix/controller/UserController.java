@@ -16,7 +16,7 @@ public class UserController
     @Autowired
     private UserService userservice;
 
-    @GetMapping("/user")
+    @GetMapping("/api/user")
     public UserRecord user(
             @RequestParam(required = true, defaultValue = "defaultUserMail") String mail,
             @RequestParam(required = true, defaultValue = "defaultUserPasswd") String passwd)

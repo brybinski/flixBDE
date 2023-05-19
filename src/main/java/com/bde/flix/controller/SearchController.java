@@ -1,48 +1,95 @@
 package com.bde.flix.controller;
 
+import com.bde.flix.model.entity.content.Content;
+import com.bde.flix.service.ContentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class SearchController
 {
-    private static final String ID = "id";
-    private static final String DESCRIPTION = "description";
-    private static final String DIRECTOR = "director";
-    private static final String DURATION = "duration";
-    private static final String POSTER = "poster";
-    private static final String RELEASE_DATE = "release_date";
-    private static final String TITLE = "title";
+
+    @Autowired
+    private ContentService contService;
+
 
     @CrossOrigin(origins = "http://localhost:8080")
-    /*
-    @GetMapping("/Search")
-    public Search search(){
-        return new Search(ID, DESCRIPTION, DIRECTOR, DURATION, POSTER, RELEASE_DATE, TITLE);
-    }
-    */
-
-    @PostMapping(path = "search",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public Search search()
+    @GetMapping("api/search/")
+    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestParam(required = false) String q)
     {
-        return new Search(ID, DESCRIPTION, DIRECTOR, DURATION, POSTER, RELEASE_DATE, TITLE);
+        try
+        {
+            List<Content> result = new ArrayList<Content>();
+            if (q != null && !q.isEmpty())
+                result.addAll(contService.getContentByTitle(q));
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+    @GetMapping("api/search/tags")
+    public ResponseEntity<List<Content>> SearchContentByTags(@RequestParam(required = true) Set<String> q)
+    {
+        try
+        {
+            List<Content> result = new ArrayList<Content>();
+            if (q != null && !q.isEmpty())
+                result.addAll(contService.getContentWithTags(q));
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("api/search/")
+    public ResponseEntity<List<Content>> SearchContentByPart(@RequestParam(required = false) String q)
+    {
+        try
+        {
+            List<Content> result = new ArrayList<Content>();
+            if (q == null)
+                result.addAll(contService.getAllContent());
+            else
+                result.addAll(contService.getContentContainingPart(q));
+
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
-
-
-
-
-/*
-String ID;
-String DESCRIPTION;
-String DIRECTOR;
-String DURATION;
-String POSTER;
-String RELEASE_DATE;
-String TITLE
- */
