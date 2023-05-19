@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HelloControllerTest extends HelloController {
+class CMSControllerTest extends CMSController {
 
     @BeforeEach
     void setUp() {
@@ -17,8 +17,8 @@ class HelloControllerTest extends HelloController {
     }
 
     @Test
-    void testHello() {
-        Hello helloTestObject = new Hello(true);
-        assertTrue(helloTestObject.ack());
+    void testCms() {
+        CMS cmsTestObject = new CMS(true);
+        assertTrue(cmsTestObject.ack());
     }
 }

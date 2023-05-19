@@ -16,8 +16,10 @@ import java.util.Set;
 @RestController
 public class SearchController
 {
+
     @Autowired
     private ContentService contService;
+
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("api/search/")
