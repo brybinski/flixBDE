@@ -30,9 +30,16 @@ public class ContentService {
         return lower;
     }
 
-    public List<Content> getContentWithTags(String infix)
+    public List<Content> getContentWithTags(Set<String> tags)
     {
-        return contRepo.findByGenreTagContaining(infix);
+        List<Content> result =  contRepo.findByGenreTagContains(tags.iterator().next());
+        for (String tag : tags)
+        {
+            tags.stream().skip(1);
+            List<Content> second =  contRepo.findByGenreTagContains(tag);
+            result.retainAll(second);
+        }
+        return result;
     }
 
     public List<Content> getContentContainingPart(String infix)

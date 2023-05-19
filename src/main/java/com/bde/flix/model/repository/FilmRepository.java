@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface FilmRepository extends JpaRepository<Film, UUID>
 {
+    long deleteByTitle(String title);
 }

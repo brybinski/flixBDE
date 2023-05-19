@@ -14,7 +14,7 @@ public interface ContentRepository extends JpaRepository<Content, UUID> {
 
     List<Content> findByTitleContaining(String infix);
 
-    List<Content> findByGenreTagContaining(String infix);
+    List<Content> findByGenreTagContains(String infix);
 
     List<Content> findByTitleContainingOrDescriptionContaining(String infix, String infix1);
 }

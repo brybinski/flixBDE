@@ -33,6 +33,7 @@ public class FilmController
                 title,
                 duration,
                 description,
+//              FIXME: pass date
 //              releaseDate,
                 poster,
                 director,

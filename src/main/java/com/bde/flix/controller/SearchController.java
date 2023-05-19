@@ -20,41 +20,68 @@ public class SearchController
     private ContentService contService;
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("api/search/{title}")
-    public ResponseEntity<List<Content>> SearchContentByTitle(@PathVariable("title") String title)
-    {
-        List<Content> result = contService.getContentByTitle(title);
-        if (result != null && !result.isEmpty()) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("api/search/tags")
-    public List<Content> SearchContentByTags(@RequestParam(required = true) Set<String> tags)
-    {
-//        FIXME: search using multiple tags
-        List<Content> result = contService.getContentWithTags(String.join(", ", tags));
-        return result;
-    }
-
-    @PostMapping("api/search/")
-    public ResponseEntity<List<Content>> SearchContentByPart(@RequestParam(required = false) String part)
+    @GetMapping("api/search/")
+    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestParam(required = false) String q)
     {
         try
         {
             List<Content> result = new ArrayList<Content>();
-            if (part == null)
-                contService.getAllContent().forEach(result::add);
+            if (q != null && !q.isEmpty())
+                result.addAll(contService.getContentByTitle(q));
             else
-                contService.getContentContainingPart(part).forEach(result::add);
-
-            if (result.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
 
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("api/search/tags")
+    public ResponseEntity<List<Content>> SearchContentByTags(@RequestParam(required = true) Set<String> q)
+    {
+        try
+        {
+            List<Content> result = new ArrayList<Content>();
+            if (q != null && !q.isEmpty())
+                result.addAll(contService.getContentWithTags(q));
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("api/search/")
+    public ResponseEntity<List<Content>> SearchContentByPart(@RequestParam(required = false) String q)
+    {
+        try
+        {
+            List<Content> result = new ArrayList<Content>();
+            if (q == null)
+                result.addAll(contService.getAllContent());
+            else
+                result.addAll(contService.getContentContainingPart(q));
+
+            if (!result.isEmpty())
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         }
         catch (Exception e)
