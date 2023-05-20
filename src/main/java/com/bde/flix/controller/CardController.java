@@ -14,7 +14,7 @@ public class CardController
 
     @Autowired
     private CardService cardService;
-    @GetMapping(value = "/card")
+    @GetMapping(value = "/api/card")
     public CardRecord getCredentials(@RequestParam(required = true) String user,
                                      @RequestParam(required = true) long cardNumber,
                                      @RequestParam(required = true) int cvv,

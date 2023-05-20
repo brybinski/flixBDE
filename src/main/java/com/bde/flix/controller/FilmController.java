@@ -8,31 +8,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController
 public class FilmController
 {
-
     @Autowired
     private FilmService filmService;
     @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping(value = "/film")
-
-    public FilmRecord GetCredentials(@RequestParam(required = true) String title,
-                                     @RequestParam(required = true) int duration,
-                                     @RequestParam(required = true) String description,
+    @GetMapping(value = "/api/film")
+    public FilmRecord GetCredentials(@RequestParam(required = true, defaultValue = "test title") String title,
+                                     @RequestParam(required = true, defaultValue = "0") int duration,
+                                     @RequestParam(required = true, defaultValue = "Test description" ) String description,
 //                                   @RequestParam(required = true) String releaseDate,
-                                     @RequestParam(required = true) String poster,
-                                     @RequestParam(required = true) String director,
-                                     @RequestParam(required = true) Set<String> actors_cast,
-                                     @RequestParam(required = true) Set<String>genreTags
+                                     @RequestParam(required = true, defaultValue = "posters/test_poster") String poster,
+                                     @RequestParam(required = true, defaultValue = "Test director") String director,
+                                     @RequestParam(required = true, defaultValue = "Actor1, Actor2, Actor3" ) Set<String> actors_cast,
+                                     @RequestParam(required = true, defaultValue = "tag1, tag2, tag3") Set<String>genreTags
                                      )
     {
         Film entity = filmService.createFilm(
                 title,
                 duration,
                 description,
+//              FIXME: pass date
 //              releaseDate,
                 poster,
                 director,
