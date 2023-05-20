@@ -29,10 +29,12 @@ public class CMSController
 
     @DeleteMapping("api/CMS/film/{title}")
     public ResponseEntity<HttpStatus> deleteFilm(@PathVariable("title") String title) {
-        try {
+        try
+        {
             filmService.deleteFilm(title);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
