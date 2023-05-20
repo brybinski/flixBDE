@@ -81,9 +81,7 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated();
 
         //h2-console needs this
-        http.headers().frameOptions().sameOrigin().xssProtection()
-                .and()
-                .contentSecurityPolicy("script-src 'self'");;
+        http.headers().frameOptions().sameOrigin().xssProtection();
 
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
