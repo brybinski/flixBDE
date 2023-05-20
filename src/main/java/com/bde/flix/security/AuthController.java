@@ -5,6 +5,7 @@ import com.bde.flix.model.repository.AccountRepository;
 import com.bde.flix.security.Account.AccountDetails;
 import com.bde.flix.security.jwt.JwtUtils;
 import com.bde.flix.security.payloads.RegisterResponse;
+import com.bde.flix.security.payloads.SignInRecord;
 import com.bde.flix.security.payloads.SignInResponse;
 import com.bde.flix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ public class AuthController {
     @Autowired
     UserService usrSrvc;
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signin")
-    public ResponseEntity<?> authUser(@RequestParam(required = true) String email,
-                                      @RequestParam(required = true) String password){
+    public ResponseEntity<?> authUser(@RequestBody SignInRecord data){
+
+        String email = data.email();
+        String password = data.password();
 
         Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
@@ -57,9 +60,14 @@ public class AuthController {
                 .body(new SignInResponse(accDetails.getEmail(), roles));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestParam(required = true) String email,
-                                          @RequestParam(required = true) String password) {
+    public ResponseEntity<?> registerUser(@RequestBody SignInRecord data) {
+
+        String email = data.email();
+        String password = data.password();
+
+
         if (accRepo.existsByEmail(email)) {
             return ResponseEntity.badRequest().body("Email has been taken!");
         }
@@ -70,6 +78,7 @@ public class AuthController {
         return ResponseEntity.ok().body(new RegisterResponse(usr.getEmail(),"account registered"));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtl.getCleanJwtCookie();
@@ -78,5 +87,4 @@ public class AuthController {
                 .body("Session killed");
 
     }
-
 }

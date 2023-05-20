@@ -10,5 +10,13 @@ public class FlixApplication {
     public static void main(String[] args) {
         SpringApplication.run(FlixApplication.class, args);
     }
-
+//
+//    @Autowired
+//    private EmailSenderService sender;
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void sendMail(){
+//        sender.sendEmail("bartoszrybinski@outlook.com",
+//                         "Sup",
+//                         "I is working");
+//    }
 }
