@@ -1,12 +1,13 @@
 package com.bde.flix.security;
 
-import com.bde.flix.security.payloads.RegisterResponse;
-import com.bde.flix.service.UserService;
 import com.bde.flix.model.entity.userman.User;
-import com.bde.flix.security.Account.AccountDetails;
-import com.bde.flix.security.payloads.SignInResponse;
-import com.bde.flix.security.jwt.JwtUtils;
 import com.bde.flix.model.repository.AccountRepository;
+import com.bde.flix.security.Account.AccountDetails;
+import com.bde.flix.security.jwt.JwtUtils;
+import com.bde.flix.security.payloads.RegisterResponse;
+import com.bde.flix.security.payloads.SignInRecord;
+import com.bde.flix.security.payloads.SignInResponse;
+import com.bde.flix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -38,29 +39,35 @@ public class AuthController {
     @Autowired
     UserService usrSrvc;
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signin")
-    public ResponseEntity<?> authUser(@RequestParam(required = true) String email,
-                                      @RequestParam(required = true) String password){
+    public ResponseEntity<?> authUser(@RequestBody SignInRecord data){
+
+        String email = data.email();
+        String password = data.password();
 
         Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
         SecurityContextHolder.getContext().setAuthentication(auth);
         AccountDetails accDetails = (AccountDetails) auth.getPrincipal();
         ResponseCookie jwtCookie = jwtUtl.generateJwtCookie(accDetails);
-
         List<String> roles = accDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
 
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new SignInResponse(accDetails.getId(), accDetails.getEmail(), roles));
+                .body(new SignInResponse(accDetails.getEmail(), roles));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestParam(required = true) String email,
-                                          @RequestParam(required = true) String password) {
+    public ResponseEntity<?> registerUser(@RequestBody SignInRecord data) {
+
+        String email = data.email();
+        String password = data.password();
+
+
         if (accRepo.existsByEmail(email)) {
             return ResponseEntity.badRequest().body("Email has been taken!");
         }
@@ -68,9 +75,10 @@ public class AuthController {
         User usr = usrSrvc.createuser(email,passEnc.encode(password));
 
 
-        return ResponseEntity.ok().body(new RegisterResponse(usr.getId(),usr.getEmail(),"account registered"));
+        return ResponseEntity.ok().body(new RegisterResponse(usr.getEmail(),"account registered"));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtl.getCleanJwtCookie();
