@@ -5,10 +5,7 @@ import com.bde.flix.model.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class FilmService
@@ -25,7 +22,7 @@ public class FilmService
             String title,
             int duration,
             String description,
-//          LocalDate releaseDate,
+            Date releaseDate,
             String poster,
             String director,
             Set<String> actors_cast,
@@ -36,7 +33,7 @@ public class FilmService
         instance.setTitle(title);
         instance.setDuration(duration);
         instance.setDescription(description);
-//      instance.setReleaseDate(releaseDate);
+        instance.setReleaseDate(releaseDate);
         instance.setPoster(poster);
         instance.setDirector(director);
         instance.setActorsCast(actors_cast);
@@ -44,8 +41,47 @@ public class FilmService
         return filmRepo.save(instance);
     }
 
-    public long  deleteFilm(String title)
+    public void deleteFilm(UUID id)
     {
-        return filmRepo.deleteByTitle(title);
+        filmRepo.deleteById(id);
     }
+
+    public void updateFilm(UUID id, Film update)
+    {
+        Optional<Film> data = getFilm(id);
+
+        if (data.isPresent())
+        {
+            Film _film = data.get();
+            _film.setTitle(update.getTitle());
+            _film.setDescription(update.getDescription());
+            _film.setDuration(update.getDuration());
+            _film.setDirector(update.getDirector());
+            _film.setActorsCast(update.getActorsCast());
+//            TODO: pass date update
+            _film.setGenreTag(update.getGenreTag());
+            filmRepo.save(_film);
+        }
+    }
+
+    public boolean isExistFilm(UUID id)
+    {
+        return filmRepo.existsById(id);
+    }
+
+    public Optional<Film> getFilm(UUID id)
+    {
+        return filmRepo.findById(id);
+    }
+
+    public List<Film> getFilms()
+    {
+        return filmRepo.findAll();
+    }
+
+    public List<Film> getFilmByTitle(String title)
+    {
+        return filmRepo.findByTitleContaining(title);
+    }
+
 }

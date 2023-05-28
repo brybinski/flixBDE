@@ -1,4 +1,4 @@
-package com.bde.flix.controller;
+package com.bde.flix.controller.Payload;
 
 public record CardRecord(String user,
                          long cardNumber,
