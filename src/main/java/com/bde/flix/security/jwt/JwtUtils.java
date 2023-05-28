@@ -101,5 +101,16 @@ public class JwtUtils {
                 .compact();
     }
 
+    public String generateResetToken(String email) {
+
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                //TODO: zmniejszyć czas
+                .setExpiration(new Date((new Date()).getTime() + 900000000L))
+                .signWith(jwtSecret, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
 
 }

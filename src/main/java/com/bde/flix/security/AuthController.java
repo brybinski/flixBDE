@@ -4,9 +4,7 @@ import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.model.repository.AccountRepository;
 import com.bde.flix.security.Account.AccountDetails;
 import com.bde.flix.security.jwt.JwtUtils;
-import com.bde.flix.security.payloads.RegisterResponse;
-import com.bde.flix.security.payloads.SignInRecord;
-import com.bde.flix.security.payloads.SignInResponse;
+import com.bde.flix.security.payloads.*;
 import com.bde.flix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -117,12 +115,101 @@ public class AuthController {
         Set<String> set_passwd = Stream.of(jwt.trim().split("\\s*,\\s*"))
                 .collect(Collectors.toSet());
         if (accRepo.existsByEmail(set_passwd.toArray()[1].toString())) {
-            return ResponseEntity.badRequest().body("Already registered, thank you");
+            return ResponseEntity.badRequest().body("Email already registered");
         }
 
-        System.out.println();
         User usr = usrSrvc.createuser(set_passwd.toArray()[1].toString(),passEnc.encode(set_passwd.toArray()[0].toString()));
 
         return ResponseEntity.ok().body("Email Verified");
     }
+
+    @PostMapping("/sendReset")
+    public ResponseEntity<?> resetPasswd(@RequestBody ForgottenEmail data) {
+
+
+        String email = data.email();
+
+
+        if (!accRepo.existsByEmail(email)) {
+            return ResponseEntity.badRequest().body("Email does not exist");
+        }
+
+        String jwtCookie = jwtUtl.generateResetToken(email);
+
+        String passwd = getAlphaNumericString(16);
+
+        try {
+            sender.sendEmail(email, "Reset Password" , String.format("temporary password: %s\n", passwd));
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+        //FIXME: SECURE THIS ASAP
+        //this NEED to be changed
+        usrSrvc.changePasswd(email, passEnc.encode(passwd));
+
+        return ResponseEntity.ok().body(new RegisterResponse(email,"Email sent"));
+    }
+
+    @PostMapping("/passwdChange")
+    public ResponseEntity<?> changePasswd(@RequestBody PasswdChangeRecord data) {
+
+        if (!accRepo.existsByEmail(data.email())) {
+            return ResponseEntity.badRequest().body("Email does not exist");
+        }
+        try {
+            jwtUtl.validateJwtToken(data.token());
+        }
+        catch (Exception e){
+            return ResponseEntity.unprocessableEntity().body(e.getMessage());
+        }
+
+        String accName = jwtUtl.getUserNameFromJwtToken(data.token());
+        if(!accName.equals(data.email())) {
+            System.out.println("*************");
+            for(int i=0; i<25; i++){
+                System.out.println("*");
+            }
+            System.out.println(String.format("We have been attacked:\nmail: %s\ntoken: %s\n", data.email(), accName));
+            for(int i=0; i<25; i++){
+                System.out.println("*");
+            }
+            System.out.println("*************");
+
+            return ResponseEntity.unprocessableEntity().body("This attack has been noticed. GL HF loser");
+
+        }
+        usrSrvc.changePasswd(data.email(),passEnc.encode(data.passwd()));
+        return ResponseEntity.ok().body("Password changed");
+    }
+
+    static String getAlphaNumericString(int n)
+    {
+
+        // choose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+
+
 }
