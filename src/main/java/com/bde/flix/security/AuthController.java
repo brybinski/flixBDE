@@ -134,24 +134,41 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Email does not exist");
         }
 
-        String jwtCookie = jwtUtl.generateResetToken(email);
 
         String passwd = getAlphaNumericString(16);
 
+        String jwtCookie = jwtUtl.generateTokenFromEmail(email, passwd);
+
         try {
-            sender.sendEmail(email, "Reset Password" , String.format("temporary password: %s\n", passwd));
+            sender.sendEmail(email, "Reset Password" , String.format("temporary password: %s\n " +
+                    "click here to reset: http://localhost:8080/api/authentication/resetPasswd?ver=%s", passwd, jwtCookie));
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
-        //FIXME: SECURE THIS ASAP
-        //this NEED to be changed
-        usrSrvc.changePasswd(email, passEnc.encode(passwd));
 
         return ResponseEntity.ok().body(new RegisterResponse(email,"Email sent"));
     }
+    @GetMapping("/resetPasswd")
+    public ResponseEntity<?> resetPasswd(@RequestParam(required = true) String ver){
 
+        try {
+            jwtUtl.validateJwtToken(ver);
+        }
+        catch (Exception e){
+            return ResponseEntity.unprocessableEntity().body(e.getMessage());
+        }
+
+        String jwt = jwtUtl.getUserNameFromJwtToken(ver);
+        Set<String> set_passwd = Stream.of(jwt.trim().split("\\s*,\\s*"))
+                .collect(Collectors.toSet());
+
+        usrSrvc.changePasswd(set_passwd.toArray()[1].toString(),
+                passEnc.encode(set_passwd.toArray()[0].toString()));
+
+        return ResponseEntity.ok().body("Password set to temporary password");
+    }
     @PostMapping("/passwdChange")
     public ResponseEntity<?> changePasswd(@RequestBody PasswdChangeRecord data) {
 
@@ -210,6 +227,5 @@ public class AuthController {
 
         return sb.toString();
     }
-
 
 }
