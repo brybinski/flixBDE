@@ -11,4 +11,12 @@ import lombok.Setter;
 @Entity
 public class Film extends com.bde.flix.model.entity.content.Content implements Watchable
 {
+    @Override
+    public void setDuration(int dur)
+    {
+        if(dur < 0)
+            throw new IllegalArgumentException("Duration must be greater than 0");
+
+        super.setDuration(dur);
+    }
 }

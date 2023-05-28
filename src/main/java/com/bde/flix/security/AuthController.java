@@ -21,13 +21,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/authentication")
 public class AuthController {
-
+    @Autowired
+    EmailSenderService sender;
     @Autowired
     AuthenticationManager authManager;
     @Autowired
@@ -51,6 +54,8 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(auth);
         AccountDetails accDetails = (AccountDetails) auth.getPrincipal();
         ResponseCookie jwtCookie = jwtUtl.generateJwtCookie(accDetails);
+
+        //TODO: remove after deployment
         List<String> roles = accDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
@@ -64,6 +69,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignInRecord data) {
 
+
         String email = data.email();
         String password = data.password();
 
@@ -72,10 +78,19 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Email has been taken!");
         }
 
+        String jwtCookie = jwtUtl.generateTokenFromEmail(email, password);
+
+        //TODO: switch to email verification after deployment
+//        try {
+//            sender.sendEmail(email, "Confirm email" , String.format("confirmation link:  http://localhost:8080/api/authentication/verifyEmail?ver=%s", jwtCookie));
+//        }
+//        catch (Exception e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//
         User usr = usrSrvc.createuser(email,passEnc.encode(password));
 
-
-        return ResponseEntity.ok().body(new RegisterResponse(usr.getEmail(),"account registered"));
+        return ResponseEntity.ok().body(new RegisterResponse(email,"Email sent"));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -86,5 +101,28 @@ public class AuthController {
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body("Session killed");
 
+    }
+
+    @GetMapping("/verifyEmail")
+    public ResponseEntity<?> verifyEmail(@RequestParam(required = true) String ver){
+
+        try {
+            jwtUtl.validateJwtToken(ver);
+        }
+        catch (Exception e){
+            return ResponseEntity.unprocessableEntity().body(e.getMessage());
+        }
+
+        String jwt = jwtUtl.getUserNameFromJwtToken(ver);
+        Set<String> set_passwd = Stream.of(jwt.trim().split("\\s*,\\s*"))
+                .collect(Collectors.toSet());
+        if (accRepo.existsByEmail(set_passwd.toArray()[1].toString())) {
+            return ResponseEntity.badRequest().body("Already registered, thank you");
+        }
+
+        System.out.println();
+        User usr = usrSrvc.createuser(set_passwd.toArray()[1].toString(),passEnc.encode(set_passwd.toArray()[0].toString()));
+
+        return ResponseEntity.ok().body("Email Verified");
     }
 }

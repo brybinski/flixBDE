@@ -2,6 +2,7 @@ package com.bde.flix.security.jwt;
 
 
 import com.bde.flix.security.Account.AccountDetails;
+import io.jsonwebtoken.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
-import io.jsonwebtoken.*;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
@@ -23,7 +23,7 @@ public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     //TODO: remove when deployed
-    private final String jwtSecretPlainText ="gVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2r5u8x/A?D(G+Kb";
+    private final String jwtSecretPlainText = "gVkYp3s6v9y$B&E)H@McQfTjWmZq4t7w!z%C*F-JaNdRgUkXp2r5u8x/A?D(G+Kb";
 
     private final Key jwtSecret = new SecretKeySpec(jwtSecretPlainText.getBytes(), "HmacSHA512");
 
@@ -62,7 +62,6 @@ public class JwtUtils {
 
     }
 
-    //TODO: maybe add iss and verification of iss for oauth
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parse(authToken);
@@ -90,4 +89,17 @@ public class JwtUtils {
                 .signWith(jwtSecret, SignatureAlgorithm.HS512)
                 .compact();
     }
+
+    public String generateTokenFromEmail(String email, String password) {
+
+        return Jwts.builder()
+                .setSubject(email+","+password)
+                .setIssuedAt(new Date())
+                //TODO: zmniejszyć czas
+                .setExpiration(new Date((new Date()).getTime() + 900000000L))
+                .signWith(jwtSecret, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
+
 }
