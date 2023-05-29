@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation 'com.h2database:h2:2.1.214'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'javax.mail:mail:1.4.7'
 //    implementation 'de.vinado.boot:spring-boot-dkim-javamail:1.2.2'
     runtimeOnly    'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly    'io.jsonwebtoken:jjwt-jackson:0.11.5'

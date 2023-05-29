@@ -9,6 +9,7 @@ public class FlixApplication {
     public static Boolean DEBUG = true;
     public static void main(String[] args) {
         SpringApplication.run(FlixApplication.class, args);
+
     }
 //
 //    @Autowired
