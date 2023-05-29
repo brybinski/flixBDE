@@ -26,6 +26,7 @@ public class FilmController
                                      @RequestParam(required = true, defaultValue = "posters/test_poster") String poster,
                                      @RequestParam(required = true, defaultValue = "Test director") String director,
                                      @RequestParam(required = true, defaultValue = "Actor1, Actor2, Actor3" ) Set<String> actors_cast,
+                                     @RequestParam(required = true, defaultValue = "https://res.cloudinary.com/dg2xgkd9r/video/upload/v1684593009/samples/elephants.mp4" ) String sourceLink,
                                      @RequestParam(required = true, defaultValue = "tag1, tag2, tag3") Set<String>genreTags
                                      )
     {
@@ -38,6 +39,7 @@ public class FilmController
                 poster,
                 director,
                 actors_cast,
+                sourceLink,
                 genreTags);
 
         return new FilmRecord(

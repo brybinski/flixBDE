@@ -29,6 +29,7 @@ public class FilmService
             String poster,
             String director,
             Set<String> actors_cast,
+            String sourceLink,
             Set<String> genreTag
     )
     {
@@ -40,6 +41,7 @@ public class FilmService
         instance.setPoster(poster);
         instance.setDirector(director);
         instance.setActorsCast(actors_cast);
+        instance.setSourceLink(sourceLink);
         instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
     }
