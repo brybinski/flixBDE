@@ -20,7 +20,7 @@ public class SeasonController {
     private SeasonService seasonService;
 
     @PostMapping("api/season")
-    public SeasonRecord test(@RequestBody Season record)
+    public SeasonRecord CreateFilm(@RequestBody Season record)
     {
         Season entity = seasonService.createSeason(record.getNumber(),
                                                    record.getDescription(),

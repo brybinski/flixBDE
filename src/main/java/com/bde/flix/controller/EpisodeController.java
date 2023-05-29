@@ -20,7 +20,7 @@ public class EpisodeController {
     private EpisodeService episodeService;
 
     @PostMapping("api/episode")
-    public EpisodeRecord test(@RequestBody Episode record) {
+    public EpisodeRecord CreateFilm(@RequestBody Episode record) {
         Episode entity = episodeService.createEpisode(record.getSeason().getId(),
                                                       record.getNumber(),
                                                       record.getDescription(),

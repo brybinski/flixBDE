@@ -26,8 +26,7 @@ public class FilmService
             String poster,
             String director,
             Set<String> actors_cast,
-            Set<String> genreTag
-    )
+            Set<String> genreTag)
     {
         Film instance = new Film();
         instance.setTitle(title);
@@ -54,11 +53,11 @@ public class FilmService
         {
             Film _film = data.get();
             _film.setTitle(update.getTitle());
-            _film.setDescription(update.getDescription());
             _film.setDuration(update.getDuration());
+            _film.setDescription(update.getDescription());
+            _film.setReleaseDate(update.getReleaseDate());
             _film.setDirector(update.getDirector());
             _film.setActorsCast(update.getActorsCast());
-//            TODO: pass date update
             _film.setGenreTag(update.getGenreTag());
             filmRepo.save(_film);
         }

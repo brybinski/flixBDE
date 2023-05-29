@@ -23,16 +23,16 @@ public class SeriesController {
     private SeriesService seriesService;
 
     @PostMapping("api/series")
-    public SeriesRecord test(@RequestBody Series create) {
+    public SeriesRecord CreateFilm(@RequestBody Series create) {
 
         Series entity = seriesService.createSeries(create.getTitle(),
                                                    create.getDuration(),
                                                    create.getDescription(),
-                                                   // TODO: pass date
+                                                   create.getReleaseDate(),
                                                    create.getPoster(),
                                                    create.getDirector(),
                                                    create.getActorsCast(),
-                                                   create.getActorsCast());
+                                                   create.getGenreTag());
         return new SeriesRecord(entity.getId(), entity.getDescription());
     }
 

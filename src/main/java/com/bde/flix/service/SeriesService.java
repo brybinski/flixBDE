@@ -6,10 +6,7 @@ import com.bde.flix.model.repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SeriesService
@@ -26,7 +23,7 @@ public class SeriesService
             String title,
             int duration,
             String description,
-//          LocalDate releaseDate,
+            Date releaseDate,
             String poster,
             String director,
             Set<String> actors_cast,
@@ -38,7 +35,7 @@ public class SeriesService
         instance.setTitle(title);
         instance.setDuration(duration);
         instance.setDescription(description);
-//      instance.setReleaseDate(releaseDate);
+        instance.setReleaseDate(releaseDate);
         instance.setPoster(poster);
         instance.setDirector(director);
         instance.setActorsCast(actors_cast);
@@ -61,7 +58,7 @@ public class SeriesService
             _series.setTitle(update.getTitle());
             _series.setDuration(update.getDuration());
             _series.setDescription(update.getDescription());
-            //            TODO: pass date update
+            _series.setReleaseDate(update.getReleaseDate());
             _series.setPoster(update.getPoster());
             _series.setDirector(update.getDirector());
             _series.setActorsCast(update.getActorsCast());

@@ -18,8 +18,8 @@ public class FilmController
     @Autowired
     private FilmService filmService;
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(value = "/api/film/")
-    public FilmRecord GetCredentials(@RequestBody Film create)
+    @PostMapping(value = "/api/film")
+    public FilmRecord CreateFilm(@RequestBody Film create)
     {
         Film entity = filmService.createFilm(
                 create.getTitle(),
@@ -29,7 +29,7 @@ public class FilmController
                 create.getPoster(),
                 create.getDirector(),
                 create.getActorsCast(),
-                create.getActorsCast());
+                create.getGenreTag());
 
         return new FilmRecord(
                 entity.getTitle(),
@@ -44,7 +44,7 @@ public class FilmController
         );
     }
 
-    @DeleteMapping("api/film/")
+    @DeleteMapping("api/film")
     public ResponseEntity<HttpStatus> deleteFilm(@RequestBody IdRecord record) {
         try
         {
@@ -56,7 +56,7 @@ public class FilmController
         }
     }
 
-    @PutMapping("api/film/")
+    @PutMapping("api/film")
     public ResponseEntity<HttpStatus> updateFilm(@RequestBody Film update) {
         if (filmService.isExistFilm(update.getId()))
         {
