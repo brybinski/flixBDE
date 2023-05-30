@@ -23,8 +23,8 @@ public abstract class Content
 
     @Column(nullable = false, length = 64)
     private String title;
-    @Column(nullable = false, length = 256)
-    private String sourceLink;
+//    @Column(nullable = false, length = 256)
+//    private String sourceLink;
     private int duration;
     @Column(nullable = true, length = 256)
     private String description;

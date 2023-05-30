@@ -6,6 +6,7 @@ import com.bde.flix.model.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,6 +33,11 @@ public class EpisodeService
         instance.setPath(path);
         instance.setDuration(duration);
         return epiRepo.save(instance);
+    }
+
+    public Optional<Episode> getEpisode(UUID id)
+    {
+        return epiRepo.findById(id);
     }
 }
 

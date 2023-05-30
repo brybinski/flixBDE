@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,7 +30,7 @@ public class FilmService
             String poster,
             String director,
             Set<String> actors_cast,
-            String sourceLink,
+            String path,
             Set<String> genreTag
     )
     {
@@ -41,9 +42,14 @@ public class FilmService
         instance.setPoster(poster);
         instance.setDirector(director);
         instance.setActorsCast(actors_cast);
-        instance.setSourceLink(sourceLink);
+        instance.setPath(path);
         instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
+    }
+
+    public Optional<Film> getFilm(UUID id)
+    {
+        return filmRepo.findById(id);
     }
 
     public long  deleteFilm(String title)
