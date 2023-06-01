@@ -17,22 +17,18 @@ public class CardController
 
     @Autowired
     private CardService cardService;
-    @GetMapping(value = "/api/card")
-    public CardRecord getCredentials(@RequestParam(required = true) String user,
-                                     @RequestParam(required = true) long cardNumber,
-                                     @RequestParam(required = true) int cvv,
-                                     @RequestParam(required = true) YearMonth expireDate,
-                                     @RequestParam(required = true) String cardHolder)
+    @PostMapping(value = "/api/card")
+    public CardRecord getCredentials(@RequestBody CardRecord card)
     {
         Card entity = cardService.createCard(
-                UUID.fromString(user),
-                cardNumber,
-                cvv,
-                expireDate,
-                cardHolder);
+                card.user(),
+                card.cardNumber(),
+                card.cvv(),
+                card.expireDate(),
+                card.cardHolder());
 
         return new CardRecord(
-                entity.getUser().toString(),
+                entity.getUser().getId(),
                 entity.getCardNumber(),
                 entity.getCvv(),
                 entity.getExpireDate(),

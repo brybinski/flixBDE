@@ -28,14 +28,14 @@ public class CardService
 
     public Card createCard(
         UUID user,
-        long card_number,
+        long cardNumber,
         int cvv,
         YearMonth expireDate,
         String CardHolder)
     {
         Card instance = new Card();
         instance.setUser(userRepo.getReferenceById(user));
-        instance.setCardNumber(card_number);
+        instance.setCardNumber(cardNumber);
         instance.setCvv(cvv);
         instance.setExpireDate(expireDate);
         instance.setCardHolder(CardHolder);
