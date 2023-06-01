@@ -22,7 +22,7 @@ public class Card
     @UuidGenerator
     private UUID id;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     private User user;
     private long cardNumber;
     private int cvv;

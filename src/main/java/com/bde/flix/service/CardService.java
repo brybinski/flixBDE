@@ -41,5 +41,8 @@ public class CardService
         instance.setCardHolder(CardHolder);
         return cardRepo.save(instance);
     }
+    public void deleteCardById(UUID id){
+        cardRepo.deleteById(id);
+    }
 }
 
