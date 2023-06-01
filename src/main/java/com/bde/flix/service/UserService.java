@@ -5,6 +5,7 @@ import com.bde.flix.model.entity.userman.User;
 import com.bde.flix.model.repository.AccountRepository;
 import com.bde.flix.model.repository.UserRepository;
 import com.bde.flix.security.Account.Role;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class UserService
         this.userRepo = userRepo;
     }
 
+    @Transactional
     public User elevateUser(UUID uuid){
         User usr = userRepo.getReferenceById(uuid);
         List<Role> roles = usr.getRoles();
@@ -39,7 +41,8 @@ public class UserService
             }
         }
         roles.add(Role.ROLE_ADMIN);
-        return usr;
+        usr.setRoles(roles);
+        return userRepo.save(usr);
     }
 
     public void changePasswd(String mail, String passwd){

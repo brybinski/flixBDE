@@ -2,6 +2,7 @@ package com.bde.flix.controller;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+@SuppressWarnings("GrazieInspection")
 public class GenerateRandomValues {
     /**
      * Returns positive long of the length specified.

@@ -1,21 +1,15 @@
 package com.bde.flix.controller;
 
-import com.bde.flix.model.entity.content.Content;
 import com.bde.flix.model.entity.content.Film;
-import com.bde.flix.model.entity.userman.Card;
-import com.bde.flix.service.ContentService;
 import com.bde.flix.service.FilmService;
-import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import jakarta.validation.Valid;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,7 +36,7 @@ public class StreamController {
 }
 
 //New class for UUID is needed, because Jackson needs getters for
-//deserialization, and i can't add getId to java.util.UUID becuase
+//deserialization, and I can't add getId to java.util.UUID becuase
 //that class is final smh
 class FlixUUID {
     private UUID id;
