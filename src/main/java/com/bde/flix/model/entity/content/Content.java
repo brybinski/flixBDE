@@ -30,6 +30,8 @@ public abstract class Content
     private String poster;
     @Column(nullable = true, length = 128)
     private String director;
+    @Column(nullable = false)
+    boolean isFilm;
     @ElementCollection
     private Set<String> actorsCast;
     @ElementCollection
