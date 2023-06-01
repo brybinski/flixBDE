@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService
@@ -26,6 +29,18 @@ public class UserService
         this.userRepo = userRepo;
     }
 
+    public User elevateUser(UUID uuid){
+        User usr = userRepo.getReferenceById(uuid);
+        List<Role> roles = usr.getRoles();
+        for (Role rle:
+             roles) {
+            if(rle == Role.ROLE_ADMIN){
+                return usr;
+            }
+        }
+        roles.add(Role.ROLE_ADMIN);
+        return usr;
+    }
 
     public void changePasswd(String mail, String passwd){
         Optional<Account> usr = accrepo.findByEmail(mail);
@@ -48,7 +63,7 @@ public class UserService
     {
         User instance = new User();
         instance.setEmail(mail);
-        instance.setRole(Role.ROLE_USER);
+        instance.setRoles(Collections.singletonList(Role.ROLE_USER));
         instance.setHash(passwd);
         return userRepo.save(instance);
     }

@@ -1,11 +1,12 @@
 package com.bde.flix.model.entity.userman;
+
 import com.bde.flix.security.Account.Role;
 import jakarta.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -23,7 +24,8 @@ public abstract class Account {
     private String email;
     @Column(nullable = false, length = 64)
 
-    private Role role;
+    @ElementCollection
+    private List<Role> roles;
     private String hash;
     private boolean availSub;
 

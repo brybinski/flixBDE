@@ -7,11 +7,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+
 @Getter
 public class AccountDetails implements UserDetails {
     private UUID id;
@@ -29,12 +29,15 @@ public class AccountDetails implements UserDetails {
     }
     public static AccountDetails build(Account user) {
 
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()));
+        List<GrantedAuthority> lst = new ArrayList<>();
+        for (Role role:user.getRoles()) {
+            lst.add(new SimpleGrantedAuthority(role.name()));
+        }
 
         return new AccountDetails(user.getId(),
                 user.getEmail(),
                 user.getHash(),
-                authorities
+                lst
         );
     }
 
