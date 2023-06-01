@@ -29,6 +29,7 @@ public class FilmController
                 create.getPoster(),
                 create.getDirector(),
                 create.getActorsCast(),
+                create.getPath(),
                 create.getGenreTag());
 
         return new FilmRecord(
