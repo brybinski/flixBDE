@@ -1,9 +1,11 @@
 package com.bde.flix.controller.Payload;
 
+import java.time.YearMonth;
+
 public record CardRecord(String user,
                          long cardNumber,
                          int cvv,
-                         String expireDate,
+                         YearMonth expireDate,
                          String cardHolder)
 {
 }

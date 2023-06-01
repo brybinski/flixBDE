@@ -6,6 +6,9 @@ import com.bde.flix.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.YearMonth;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -24,18 +27,17 @@ public class CardService
     }
 
     public Card createCard(
-            UUID user,
-            long card_number,
-            int cvv,
-//          YearMonth expire_date,
-            String CardHolder)
+        UUID user,
+        long card_number,
+        int cvv,
+        YearMonth expireDate,
+        String CardHolder)
     {
         Card instance = new Card();
         instance.setUser(userRepo.getReferenceById(user));
-        instance.setCard_number(card_number);
+        instance.setCardNumber(card_number);
         instance.setCvv(cvv);
-        //TODO: Cast String to YearMonth
-//      instance.setExpire_date(expire_date);
+        instance.setExpireDate(expireDate);
         instance.setCardHolder(CardHolder);
         return cardRepo.save(instance);
     }
