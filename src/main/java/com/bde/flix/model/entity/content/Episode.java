@@ -21,6 +21,7 @@ public class Episode implements Watchable
 
     private int number;
     private String description;
+    @Column(nullable = false)
     private String path;
     private int duration;
 
