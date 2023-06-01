@@ -33,9 +33,9 @@ public class FlixApplication {
 //                         "Sup",
 //                         "I is working");
 //    }
-    @EventListener(ApplicationReadyEvent.class)
-    public void sendMail(){
-        List<Film> filmsIds = filmService.getFilms();
-        List<Episode> episodeIds =episodeService.getEpisodes();
-    }
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void sendMail(){
+//        List<Film> filmsIds = filmService.getFilms();
+//        List<Episode> episodeIds =episodeService.getEpisodes();
+//    }
 }
