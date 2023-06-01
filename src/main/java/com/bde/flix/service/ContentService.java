@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class ContentService {
@@ -52,5 +54,9 @@ public class ContentService {
             if(!lower.contains(content)) lower.add(content);
         });
         return lower;
+    }
+
+    public Optional<Content> getContentById(UUID id){
+        return contRepo.findById(id);
     }
 }

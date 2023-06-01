@@ -26,7 +26,9 @@ public class FilmService
             String poster,
             String director,
             Set<String> actors_cast,
-            Set<String> genreTag)
+            String path,
+            Set<String> genreTag
+    )
     {
         Film instance = new Film();
         instance.setTitle(title);
@@ -36,6 +38,7 @@ public class FilmService
         instance.setPoster(poster);
         instance.setDirector(director);
         instance.setActorsCast(actors_cast);
+        instance.setPath(path);
         instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
     }
