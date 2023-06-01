@@ -25,7 +25,7 @@ public class SearchController
     private ContentService contService;
 
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/search/")
     public ResponseEntity<List<Content>> SearchContentByTitle(@RequestBody SearchRecord record)
     {
@@ -49,6 +49,7 @@ public class SearchController
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/search/tags")
     public ResponseEntity<List<Content>> SearchContentByTags(@RequestBody TagsRecord record)
     {
@@ -73,6 +74,7 @@ public class SearchController
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/search/")
     public ResponseEntity<List<Content>> SearchContentByPart(@RequestBody SearchRecord record)
     {

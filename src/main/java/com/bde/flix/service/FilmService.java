@@ -25,8 +25,8 @@ public class FilmService
             Date releaseDate,
             String poster,
             String director,
-            Set<String> actors_cast,
             String path,
+            Set<String> actors_cast,
             Set<String> genreTag
     )
     {
@@ -37,8 +37,8 @@ public class FilmService
         instance.setReleaseDate(releaseDate);
         instance.setPoster(poster);
         instance.setDirector(director);
-        instance.setActorsCast(actors_cast);
         instance.setPath(path);
+        instance.setActorsCast(actors_cast);
         instance.setGenreTag(genreTag);
         return filmRepo.save(instance);
     }
