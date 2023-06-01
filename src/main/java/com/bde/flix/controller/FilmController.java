@@ -17,7 +17,7 @@ public class FilmController
 {
     @Autowired
     private FilmService filmService;
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(value = "/api/film")
     public FilmRecord CreateFilm(@RequestBody Film create)
     {
@@ -43,7 +43,7 @@ public class FilmController
                 entity.getGenreTag()
         );
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/film")
     public ResponseEntity<HttpStatus> deleteFilm(@RequestBody IdRecord record) {
         try
@@ -55,7 +55,7 @@ public class FilmController
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/film")
     public ResponseEntity<HttpStatus> updateFilm(@RequestBody Film update) {
         if (filmService.isExistFilm(update.getId()))
@@ -68,7 +68,7 @@ public class FilmController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/film")
     public ResponseEntity<Film> getFilmById(@RequestBody IdRecord record) {
         if (filmService.isExistFilm(record.id())) {
@@ -77,7 +77,7 @@ public class FilmController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/film/all")
     public ResponseEntity<List<Film>> getFilmByTitle (@RequestBody TitleRecord record) {
         try {

@@ -18,7 +18,7 @@ public class SeasonController {
 
     @Autowired
     private SeasonService seasonService;
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/season")
     public SeasonRecord CreateFilm(@RequestBody Season record)
     {
@@ -28,7 +28,7 @@ public class SeasonController {
 
         return new SeasonRecord(entity.getId(), entity.getDescription());
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/season")
     public ResponseEntity<HttpStatus> deleteSeason(@RequestBody IdRecord record) {
         try
@@ -40,7 +40,7 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/season")
     public ResponseEntity<HttpStatus> updateSeason(@RequestBody Season update) {
         if (seasonService.isExistSeason(update.getId()))
@@ -53,7 +53,7 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/season")
     public ResponseEntity<Season> getSeasonById(@RequestBody IdRecord record) {
         if (seasonService.isExistSeason(record.id())) {
@@ -62,7 +62,7 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/season/all")
     public ResponseEntity<List<Season>> getSeasonBySeries(@RequestBody IdRecord record) {
         try {

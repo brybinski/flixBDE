@@ -18,7 +18,7 @@ public class EpisodeController {
 
     @Autowired
     private EpisodeService episodeService;
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/episode")
     public EpisodeRecord CreateFilm(@RequestBody Episode record) {
         Episode entity = episodeService.createEpisode(record.getSeason().getId(),
@@ -28,7 +28,7 @@ public class EpisodeController {
                                                       record.getDuration());
         return new EpisodeRecord(entity.getId(), entity.getDescription());
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/episode")
     public ResponseEntity<HttpStatus> deleteEpisode(@RequestBody IdRecord record) {
         try
@@ -40,7 +40,7 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/episode")
     public ResponseEntity<HttpStatus> updateEpisode(@RequestBody Episode update) {
         if (episodeService.isExistEpisode(update.getId()))
@@ -53,7 +53,7 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode")
     public ResponseEntity<Episode> getEpisodeById(@RequestBody IdRecord record) {
         if (episodeService.isExistEpisode(record.id())) {
@@ -62,7 +62,7 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode/all")
     public ResponseEntity<List<Episode>> getEpisodeBySeason (@RequestBody IdRecord record) {
         try {

@@ -21,7 +21,7 @@ public class SeriesController {
 
     @Autowired
     private SeriesService seriesService;
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series")
     public SeriesRecord CreateFilm(@RequestBody Series create) {
 
@@ -35,7 +35,7 @@ public class SeriesController {
                                                    create.getGenreTag());
         return new SeriesRecord(entity.getId(), entity.getDescription());
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/series")
     public ResponseEntity<HttpStatus> deleteSeries(@RequestBody IdRecord record) {
         try
@@ -47,7 +47,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/series")
     public ResponseEntity<HttpStatus> updateSeries(@RequestBody Series update) {
         if (seriesService.isExistSeries(update.getId()))
@@ -60,7 +60,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/series")
     public ResponseEntity<Series> getSeriesById(@RequestBody IdRecord record) {
         if (seriesService.isExistSeries(record.id())) {
@@ -69,7 +69,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/series/all")
     public ResponseEntity<List<Series>> getSeriesByTitle (@RequestBody TitleRecord record) {
         try {
