@@ -95,6 +95,7 @@ public class EpisodeController {
     public ResponseEntity<List<Episode>> getEpisodeBySeason (@RequestBody IdRecord record) {
         try {
             List<Episode> result = episodeService.getEpisodeBySeason(record.id());
+
             if (!result.isEmpty())
                 return new ResponseEntity<>(result, HttpStatus.OK);
             else
