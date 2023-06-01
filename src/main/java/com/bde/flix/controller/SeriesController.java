@@ -80,7 +80,16 @@ public class SeriesController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/series/all")
     public ResponseEntity<List<Series>> getAllSeries() {
-            return new ResponseEntity<>(seriesService.getSerieses(), HttpStatus.OK);
+        try {
+            List<Series> serieses = seriesService.getSerieses();
+            if (!serieses.isEmpty()) {
+                return new ResponseEntity<>(serieses, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

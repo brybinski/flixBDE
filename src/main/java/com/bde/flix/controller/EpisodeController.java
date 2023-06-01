@@ -76,7 +76,16 @@ public class EpisodeController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode/all")
     public ResponseEntity<List<Episode>> getAllEpisodes() {
-            return new ResponseEntity<>(episodeService.getEpisodes(), HttpStatus.OK);
+        try {
+            List<Episode> episodes = episodeService.getEpisodes();
+            if (!episodes.isEmpty()) {
+                return new ResponseEntity<>(episodes, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

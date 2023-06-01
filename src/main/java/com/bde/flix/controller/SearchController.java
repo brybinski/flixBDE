@@ -48,6 +48,7 @@ public class SearchController
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/search/tags")
     public ResponseEntity<List<Content>> SearchContentByTags(@RequestBody TagsRecord record)
@@ -72,6 +73,7 @@ public class SearchController
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/search/")
     public ResponseEntity<List<Content>> SearchContentByPart(@RequestBody SearchRecord record)

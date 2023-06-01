@@ -70,7 +70,16 @@ public class SeasonController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/season/all")
     public ResponseEntity<List<Season>> getAllSeasons() {
-        return new ResponseEntity<>(seasonService.getSeasons(), HttpStatus.OK);
+        try {
+            List<Season> seasons = seasonService.getSeasons();
+            if (!seasons.isEmpty()) {
+                return new ResponseEntity<>(seasons, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
