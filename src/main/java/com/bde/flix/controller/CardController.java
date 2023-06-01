@@ -42,8 +42,8 @@ public class CardController
             cardService.deleteCardById(card.id());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(card.id());
-            System.out.println(e.toString());
+//            System.out.println(card.id());
+//            System.out.println(e.toString());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
