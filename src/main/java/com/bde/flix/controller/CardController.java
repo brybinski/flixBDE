@@ -1,5 +1,6 @@
 package com.bde.flix.controller;
 
+import com.bde.flix.controller.Payload.CardRecord;
 import com.bde.flix.service.CardService;
 import com.bde.flix.model.entity.userman.Card;
 import org.springframework.beans.factory.annotation.Autowired;

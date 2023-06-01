@@ -6,6 +6,7 @@ import com.bde.flix.model.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,9 +17,7 @@ public class EpisodeService
     SeasonRepository seasonRepo;
 
     @Autowired
-    public EpisodeService(
-            EpisodeRepository hist,
-            SeasonRepository seasonRepo)
+    public EpisodeService(EpisodeRepository hist, SeasonRepository seasonRepo)
     {
         this.epiRepo = hist;
         this.seasonRepo = seasonRepo;
@@ -35,9 +34,45 @@ public class EpisodeService
         return epiRepo.save(instance);
     }
 
+    public void deleteEpisode(UUID id)
+    {
+        epiRepo.deleteById(id);
+    }
+
+    public void updateEpisode(UUID id, Episode update)
+    {
+        Optional<Episode> data = getEpisode(id);
+
+        if (data.isPresent())
+        {
+            Episode _episode = data.get();
+            _episode.setNumber(update.getNumber());
+            _episode.setDescription(update.getDescription());
+            _episode.setPath(update.getPath());
+            _episode.setDuration(update.getDuration());
+            epiRepo.save(_episode);
+        }
+    }
+
+    public boolean isExistEpisode(UUID id)
+    {
+        return epiRepo.existsById(id);
+    }
+
     public Optional<Episode> getEpisode(UUID id)
     {
         return epiRepo.findById(id);
     }
+
+    public List<Episode> getEpisodes()
+    {
+        return epiRepo.findAll();
+    }
+
+    public List<Episode> getEpisodeBySeason(UUID id)
+    {
+        return epiRepo.findBySeason(seasonRepo.getReferenceById(id));
+    }
+
 }
 

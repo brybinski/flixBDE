@@ -1,5 +1,6 @@
 package com.bde.flix.controller;
 
+import com.bde.flix.controller.Payload.Search;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 
 @Getter
@@ -28,7 +25,7 @@ public abstract class Content
     private int duration;
     @Column(nullable = true, length = 256)
     private String description;
-    private LocalDate releaseDate;
+    private Date releaseDate;
     @Column(nullable = true, length = 128)
     private String poster;
     @Column(nullable = true, length = 128)

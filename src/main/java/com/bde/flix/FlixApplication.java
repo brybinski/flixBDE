@@ -9,6 +9,15 @@ public class FlixApplication {
     public static Boolean DEBUG = true;
     public static void main(String[] args) {
         SpringApplication.run(FlixApplication.class, args);
-    }
 
+    }
+//
+//    @Autowired
+//    private EmailSenderService sender;
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void sendMail(){
+//        sender.sendEmail("bartoszrybinski@outlook.com",
+//                         "Sup",
+//                         "I is working");
+//    }
 }

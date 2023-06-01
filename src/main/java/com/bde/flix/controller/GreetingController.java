@@ -1,6 +1,8 @@
 package com.bde.flix.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
+
+import com.bde.flix.controller.Payload.Greeting;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

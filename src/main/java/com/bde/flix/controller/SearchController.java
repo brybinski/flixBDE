@@ -1,5 +1,9 @@
 package com.bde.flix.controller;
 
+import com.bde.flix.controller.Payload.IdRecord;
+import com.bde.flix.controller.Payload.SearchRecord;
+import com.bde.flix.controller.Payload.SeasonRecord;
+import com.bde.flix.controller.Payload.TagsRecord;
 import com.bde.flix.model.entity.content.Content;
 import com.bde.flix.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +27,13 @@ public class SearchController
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("api/search/")
-    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestParam(required = false) String q)
+    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestBody SearchRecord record)
     {
         try
         {
             List<Content> result = new ArrayList<Content>();
-            if (q != null && !q.isEmpty())
-                result.addAll(contService.getContentByTitle(q));
+            if (record.q()!= null && !record.q().isEmpty())
+                result.addAll(contService.getContentByTitle(record.q()));
             else
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -46,13 +50,13 @@ public class SearchController
     }
 
     @GetMapping("api/search/tags")
-    public ResponseEntity<List<Content>> SearchContentByTags(@RequestParam(required = true) Set<String> q)
+    public ResponseEntity<List<Content>> SearchContentByTags(@RequestBody TagsRecord record)
     {
         try
         {
             List<Content> result = new ArrayList<Content>();
-            if (q != null && !q.isEmpty())
-                result.addAll(contService.getContentWithTags(q));
+            if (record.q() != null && !record.q().isEmpty())
+                result.addAll(contService.getContentWithTags(record.q()));
             else
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -70,15 +74,15 @@ public class SearchController
     }
 
     @PostMapping("api/search/")
-    public ResponseEntity<List<Content>> SearchContentByPart(@RequestParam(required = false) String q)
+    public ResponseEntity<List<Content>> SearchContentByPart(@RequestBody SearchRecord record)
     {
         try
         {
             List<Content> result = new ArrayList<Content>();
-            if (q == null)
+            if (record.q() == null)
                 result.addAll(contService.getAllContent());
             else
-                result.addAll(contService.getContentContainingPart(q));
+                result.addAll(contService.getContentContainingPart(record.q()));
 
             if (!result.isEmpty())
                 return new ResponseEntity<>(result, HttpStatus.OK);

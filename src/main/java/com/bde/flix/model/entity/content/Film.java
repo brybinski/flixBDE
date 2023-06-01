@@ -14,4 +14,12 @@ public class Film extends com.bde.flix.model.entity.content.Content implements W
 {
     @Column(nullable = false)
     private String path;
+    @Override
+    public void setDuration(int dur)
+    {
+        if(dur < 0)
+            throw new IllegalArgumentException("Duration must be greater than 0");
+
+        super.setDuration(dur);
+    }
 }
