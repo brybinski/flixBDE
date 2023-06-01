@@ -36,8 +36,7 @@ public class FilmController
                 entity.getTitle(),
                 entity.getDuration(),
                 entity.getDescription(),
-//                TODO get date
-                "00.00.0000",
+                entity.getReleaseDate(),
                 entity.getPoster(),
                 entity.getDirector(),
                 entity.getActorsCast(),
