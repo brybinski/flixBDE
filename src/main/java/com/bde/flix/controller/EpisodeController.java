@@ -6,6 +6,7 @@ import com.bde.flix.controller.Payload.IdRecord;
 import com.bde.flix.model.entity.content.Film;
 import com.bde.flix.service.EpisodeService;
 import com.bde.flix.model.entity.content.Episode;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 public class EpisodeController {
@@ -87,7 +89,7 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @Transactional
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode/season")
     public ResponseEntity<List<Episode>> getEpisodeBySeason (@RequestBody IdRecord record) {

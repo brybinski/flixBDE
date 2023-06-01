@@ -3,6 +3,7 @@ package com.bde.flix.service;
 import com.bde.flix.model.entity.content.Episode;
 import com.bde.flix.model.repository.EpisodeRepository;
 import com.bde.flix.model.repository.SeasonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +69,7 @@ public class EpisodeService
     {
         return epiRepo.findAll();
     }
-
+    @Transactional
     public List<Episode> getEpisodeBySeason(UUID id)
     {
         return epiRepo.findBySeason(seasonRepo.getReferenceById(id));
