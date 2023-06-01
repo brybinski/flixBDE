@@ -83,7 +83,7 @@ public class SeasonController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/season/all")
+    @GetMapping("api/season/series")
     public ResponseEntity<List<Season>> getSeasonBySeries(@RequestBody IdRecord record) {
         try {
             List<Season> result = seasonService.getSeasonBySeries(record.id());
