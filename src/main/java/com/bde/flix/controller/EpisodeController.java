@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @RestController
@@ -67,16 +68,16 @@ public class EpisodeController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode")
-    public ResponseEntity<Optional<Episode>> getEpisodeById(@RequestBody IdRecord record) {
-        Optional<Episode> result = episodeService.getEpisode(record.id());
+    public ResponseEntity<Optional<Episode>> getEpisodeById(@RequestParam(required = true) UUID id) {
+        Optional<Episode> result = episodeService.getEpisode(id);
         if (result.isPresent())
-            return new ResponseEntity<>(episodeService.getEpisode(record.id()), HttpStatus.OK);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/episode/all")
+    @PostMapping("api/episode/all")
     public ResponseEntity<List<Episode>> getAllEpisodes() {
         try {
             List<Episode> episodes = episodeService.getEpisodes();
@@ -91,7 +92,7 @@ public class EpisodeController {
     }
     @Transactional
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/episode/season")
+    @PostMapping("api/episode/season")
     public ResponseEntity<List<Episode>> getEpisodeBySeason (@RequestBody IdRecord record) {
         try {
             List<Episode> result = episodeService.getEpisodeBySeason(record.id());

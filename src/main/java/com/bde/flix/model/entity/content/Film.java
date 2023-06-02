@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 public class Film extends com.bde.flix.model.entity.content.Content implements Watchable
 {
-    @Column(nullable = true)
+    @Column
     private String path;
     @Override
     public void setDuration(int dur)

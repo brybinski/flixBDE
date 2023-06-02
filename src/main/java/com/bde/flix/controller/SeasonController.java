@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class SeasonController {
@@ -59,16 +60,16 @@ public class SeasonController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/season")
-    public ResponseEntity<Optional<Season>> getSeasonById(@RequestBody IdRecord record) {
-        Optional<Season> result = seasonService.getSeason(record.id());
+    public ResponseEntity<Optional<Season>> getSeasonById(@RequestParam(required = true) UUID id) {
+        Optional<Season> result = seasonService.getSeason(id);
         if (result.isPresent())
-            return new ResponseEntity<>(seasonService.getSeason(record.id()), HttpStatus.OK);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/season/all")
+    @PostMapping("api/season/all")
     public ResponseEntity<List<Season>> getAllSeasons() {
         try {
             List<Season> seasons = seasonService.getSeasons();
@@ -83,7 +84,7 @@ public class SeasonController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/season/series")
+    @PostMapping("api/season/series")
     public ResponseEntity<List<Season>> getSeasonBySeries(@RequestBody IdRecord record) {
         try {
             List<Season> result = seasonService.getSeasonBySeries(record.id());
