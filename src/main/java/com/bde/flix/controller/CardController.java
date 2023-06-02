@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -23,7 +24,8 @@ public class CardController
     public CardRecord createCard(@RequestBody CardRecord card)
     {
         Card entity = cardService.createCard(
-                card.user(),
+
+                card.id(),
                 card.cardNumber(),
                 card.cvv(),
                 card.expireDate(),
@@ -48,4 +50,19 @@ public class CardController
         }
     }
 
+    @PutMapping("/api/card")
+    public ResponseEntity<HttpStatus> updateCard(@RequestBody CardRecord card){
+        if(cardService.isExistCard(card.id()) && cardService.getCardById(card.id()).isPresent()){
+            Card karta = new Card();
+            karta.setUser(cardService.getCardById(card.id()).get().getUser());
+            karta.setCardNumber(card.cardNumber());
+            karta.setCvv(card.cvv());
+            karta.setExpireDate(card.expireDate());
+            karta.setCardHolder(card.cardHolder());
+            cardService.updateCard(card.id(), karta);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -43,6 +42,24 @@ public class CardService
     }
     public void deleteCardById(UUID id){
         cardRepo.deleteById(id);
+    }
+    public boolean isExistCard(UUID id){
+        return cardRepo.existsById(id);
+    }
+    public void updateCard(UUID id, Card update){
+        Optional<Card> data = getCardById(id);
+        if(data.isPresent()){
+            Card card = data.get();
+            card.setUser(update.getUser());
+            card.setCardNumber(update.getCardNumber());
+            card.setCvv(update.getCvv());
+            card.setExpireDate(update.getExpireDate());
+            card.setCardHolder(update.getCardHolder());
+            cardRepo.save(card);
+        }
+    }
+    public Optional<Card> getCardById(UUID id){
+        return cardRepo.findById(id);
     }
 }
 
