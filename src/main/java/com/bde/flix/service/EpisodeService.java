@@ -1,11 +1,14 @@
 package com.bde.flix.service;
 
 import com.bde.flix.model.entity.content.Episode;
+import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.repository.EpisodeRepository;
 import com.bde.flix.model.repository.SeasonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -68,10 +71,12 @@ public class EpisodeService
     {
         return epiRepo.findAll();
     }
-
     public List<Episode> getEpisodeBySeason(UUID id)
     {
-        return epiRepo.findBySeason(seasonRepo.getReferenceById(id));
+        Optional<Season> season = seasonRepo.findById(id);
+        if(season.isEmpty())
+            return new ArrayList<>();
+        return epiRepo.findBySeason(season.get());
     }
 
 }

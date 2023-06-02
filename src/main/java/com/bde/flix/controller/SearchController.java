@@ -12,10 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class SearchController
@@ -25,15 +22,15 @@ public class SearchController
     private ContentService contService;
 
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/search/")
-    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestBody SearchRecord record)
+    public ResponseEntity<List<Content>> SearchContentByTitle(@RequestParam(required = true) String q)
     {
         try
         {
             List<Content> result = new ArrayList<Content>();
-            if (record.q()!= null && !record.q().isEmpty())
-                result.addAll(contService.getContentByTitle(record.q()));
+            if (q!= null && !q.isEmpty())
+                result.addAll(contService.getContentByTitle(q));
             else
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -49,7 +46,8 @@ public class SearchController
         }
     }
 
-    @GetMapping("api/search/tags")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("api/search/tags")
     public ResponseEntity<List<Content>> SearchContentByTags(@RequestBody TagsRecord record)
     {
         try
@@ -73,6 +71,7 @@ public class SearchController
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/search/")
     public ResponseEntity<List<Content>> SearchContentByPart(@RequestBody SearchRecord record)
     {
