@@ -25,7 +25,7 @@ public class Episode implements Watchable
     private String path;
     private int duration;
 
-    @ManyToOne
+    @ManyToOne()
     private com.bde.flix.model.entity.content.Season season;
     public int getDuration()
     {

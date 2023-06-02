@@ -17,5 +17,4 @@ public interface EpisodeRepository extends JpaRepository<Episode, UUID>
     Episode getById(UUID id);
 
     List<Episode> findBySeason(Season reference);
-
 }

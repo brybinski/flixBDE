@@ -4,6 +4,7 @@ import com.bde.flix.controller.Payload.IdRecord;
 import com.bde.flix.controller.Payload.SeasonRecord;
 import com.bde.flix.model.entity.content.Episode;
 import com.bde.flix.model.entity.content.Series;
+import com.bde.flix.service.EpisodeService;
 import com.bde.flix.service.SeasonService;
 import com.bde.flix.model.entity.content.Season;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,14 @@ public class SeasonController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/season")
     public ResponseEntity<HttpStatus> deleteSeason(@RequestBody IdRecord record) {
-        try
-        {
+//        try
+//        {
             seasonService.deleteSeason(record.id());
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e)
-        {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+//        } catch (Exception e)
+//        {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

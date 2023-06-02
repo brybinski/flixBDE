@@ -1,5 +1,6 @@
 package com.bde.flix.model.repository;
 import com.bde.flix.model.entity.content.Film;
+import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.entity.content.Series;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface SeriesRepository extends JpaRepository<Series, UUID>
     Series getById(UUID id);
 
     List<Series> findByTitleContaining(String infix);
+
 }

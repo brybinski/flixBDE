@@ -7,6 +7,7 @@ import com.bde.flix.controller.Payload.TitleRecord;
 import com.bde.flix.model.entity.content.Episode;
 import com.bde.flix.model.entity.content.Film;
 import com.bde.flix.model.entity.content.Season;
+import com.bde.flix.service.SeasonService;
 import com.bde.flix.service.SeriesService;
 import com.bde.flix.model.entity.content.Series;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class SeriesController {
 
     @Autowired
     private SeriesService seriesService;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series")
     public ResponseEntity<HttpStatus> CreateSeries(@RequestBody Series create)
@@ -43,15 +45,15 @@ public class SeriesController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/series")
     public ResponseEntity<HttpStatus> deleteSeries(@RequestBody IdRecord record) {
-        try
-        {
+//        try
+//        {
             seriesService.deleteSeries(record.id());
             return new ResponseEntity<>(HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+//        }
+//        catch (Exception e)
+//        {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

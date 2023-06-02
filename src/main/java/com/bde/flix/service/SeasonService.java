@@ -3,6 +3,7 @@ package com.bde.flix.service;
 import com.bde.flix.model.entity.content.Episode;
 import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.entity.content.Series;
+import com.bde.flix.model.repository.EpisodeRepository;
 import com.bde.flix.model.repository.SeasonRepository;
 import com.bde.flix.model.repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,17 @@ import java.util.UUID;
 @Service
 public class SeasonService
 {
+    EpisodeRepository episodeRepo;
     SeasonRepository seasonRepo;
     SeriesRepository seriesRepo;
 
     @Autowired
-    public SeasonService(
+    public SeasonService( EpisodeRepository epiRepo,
             SeasonRepository test,
             SeriesRepository seriesRepo)
+
     {
+        this.episodeRepo = epiRepo;
         this.seasonRepo = test;
         this.seriesRepo = seriesRepo;
     }
@@ -42,6 +46,12 @@ public class SeasonService
 
     public void deleteSeason(UUID id)
     {
+        List<Episode> result = episodeRepo.findBySeason(seasonRepo.getById(id));
+        result.forEach( (episode) ->
+        {
+            if(episode != null)
+                episodeRepo.deleteById(episode.getId());
+        });
         seasonRepo.deleteById(id);
     }
 
