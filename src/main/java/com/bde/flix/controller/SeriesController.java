@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class SeriesController {
@@ -68,17 +69,17 @@ public class SeriesController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/series")
-    public ResponseEntity<Optional<Series>> getSeriesById(@RequestBody IdRecord record) {
-        Optional<Series> result = seriesService.getSeries(record.id());
+    public ResponseEntity<Optional<Series>> getSeriesById(@RequestParam(required = true) UUID id) {
+        Optional<Series> result = seriesService.getSeries(id);
         if (result.isPresent())
-            return new ResponseEntity<>(seriesService.getSeries(record.id()), HttpStatus.OK);
+            return new ResponseEntity<>(seriesService.getSeries(id), HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/series/all")
+    @PostMapping("api/series/all")
     public ResponseEntity<List<Series>> getAllSeries() {
         try {
             List<Series> serieses = seriesService.getSerieses();
@@ -93,7 +94,7 @@ public class SeriesController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/series/title")
+    @PostMapping("api/series/title")
     public ResponseEntity<List<Series>> getSeriesByTitle (@RequestBody TitleRecord record) {
         try {
             List<Series> result = seriesService.getSeriesByTitle(record.title());

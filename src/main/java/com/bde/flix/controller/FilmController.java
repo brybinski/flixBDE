@@ -66,16 +66,16 @@ public class FilmController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/film")
-    public ResponseEntity<Optional<Film>> getFilmById(@RequestBody IdRecord record) {
-        Optional<Film> film = filmService.getFilm(record.id());
-        if (film.isPresent())
-            return new ResponseEntity<>(film, HttpStatus.OK);
+    public ResponseEntity<Optional<Film>> getFilmById(@RequestParam(required = true) UUID id) {
+        Optional<Film> result = filmService.getFilm(id);
+        if (result.isPresent())
+            return new ResponseEntity<>(result, HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/film/all")
+    @PostMapping("api/film/all")
     public ResponseEntity<List<Film>> getAllFilms() {
         try {
             List<Film> films = filmService.getFilms();
@@ -90,7 +90,7 @@ public class FilmController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("api/film/title")
+    @PostMapping("api/film/title")
     public ResponseEntity<List<Film>> getFilmByTitle(@RequestBody TitleRecord record) {
         try {
             List<Film> result = filmService.getFilmByTitle(record.title());
