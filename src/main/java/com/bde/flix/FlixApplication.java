@@ -5,20 +5,26 @@ import com.bde.flix.model.entity.content.Film;
 import com.bde.flix.model.entity.content.Series;
 import com.bde.flix.service.EpisodeService;
 import com.bde.flix.service.FilmService;
+import com.bde.flix.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootApplication
 public class FlixApplication {
     @Autowired
     private FilmService filmService;
     @Autowired
-    private EpisodeService episodeService;
+    private SeriesService seriesService;
+    List<UUID> filmsIds;
+    List<UUID> seriesIds;
     public static Boolean DEBUG = true;
     public static void main(String[] args) {
         SpringApplication.run(FlixApplication.class, args);
@@ -32,10 +38,5 @@ public class FlixApplication {
 //        sender.sendEmail("bartoszrybinski@outlook.com",
 //                         "Sup",
 //                         "I is working");
-//    }
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void sendMail(){
-//        List<Film> filmsIds = filmService.getFilms();
-//        List<Episode> episodeIds =episodeService.getEpisodes();
 //    }
 }

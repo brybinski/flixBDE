@@ -85,6 +85,13 @@ public class SeriesService
         return serRepo.existsById(id);
     }
 
+    public List<Series> getRandomSeries()
+    {
+        List<Series> serieses = getSerieses();
+        Collections.shuffle(serieses);
+        return serieses.subList(0, Math.min(serieses.size(), 10));
+    }
+
     public Optional<Series> getSeries(UUID id)
     {
         return serRepo.findById(id);

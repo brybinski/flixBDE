@@ -90,6 +90,21 @@ public class FilmController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("api/film/random")
+    public ResponseEntity<List<Film>> getRandomFilms() {
+        try {
+            List<Film> randFilms = filmService.getRandomFilms();
+            if (!randFilms.isEmpty()) {
+                return new ResponseEntity<>(randFilms, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/film/title")
     public ResponseEntity<List<Film>> getFilmByTitle(@RequestBody TitleRecord record) {
         try {

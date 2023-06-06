@@ -94,6 +94,20 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("api/series/random")
+    public ResponseEntity<List<Series>> getRandomSeries() {
+        try {
+            List<Series> randSeries = seriesService.getRandomSeries();
+            if (!randSeries.isEmpty()) {
+                return new ResponseEntity<>(randSeries, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series/title")

@@ -1,6 +1,7 @@
 package com.bde.flix.service;
 
 import com.bde.flix.model.entity.content.Film;
+import com.bde.flix.model.entity.content.Series;
 import com.bde.flix.model.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,13 @@ public class FilmService
     public boolean isExistFilm(UUID id)
     {
         return filmRepo.existsById(id);
+    }
+
+    public List<Film> getRandomFilms()
+    {
+        List<Film> films = getFilms();
+        Collections.shuffle(films);
+        return films.subList(0, Math.min(films.size(), 10));
     }
 
     public Optional<Film> getFilm(UUID id)
