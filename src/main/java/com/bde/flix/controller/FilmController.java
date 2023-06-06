@@ -13,81 +13,87 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-public class FilmController
-{
+public class FilmController {
     @Autowired
     private FilmService filmService;
-    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping(value = "/api/film")
-    public FilmRecord CreateFilm(@RequestBody Film create)
-    {
-        Film entity = filmService.createFilm(
-                create.getTitle(),
-                create.getDuration(),
-                create.getDescription(),
-                create.getReleaseDate(),
-                create.getPoster(),
-                create.getDirector(),
-                create.getActorsCast(),
-                create.getPath(),
-                create.getGenreTag());
 
-        return new FilmRecord(
-                entity.getTitle(),
-                entity.getDuration(),
-                entity.getDescription(),
-                entity.getReleaseDate(),
-                entity.getPoster(),
-                entity.getDirector(),
-                entity.getActorsCast(),
-                entity.getGenreTag()
-        );
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(value = "/api/film")
+    public ResponseEntity<HttpStatus> CreateFilm(@RequestBody Film create) {
+        try
+        {
+            filmService.createFilm(
+                    create.getTitle(),
+                    create.getDuration(),
+                    create.getDescription(),
+                    create.getReleaseDate(),
+                    create.getPoster(),
+                    create.getDirector(),
+                    create.getPath(),
+                    create.getActorsCast(),
+                    create.getGenreTag());
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/film")
     public ResponseEntity<HttpStatus> deleteFilm(@RequestBody IdRecord record) {
         try
         {
             filmService.deleteFilm(record.id());
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/film")
     public ResponseEntity<HttpStatus> updateFilm(@RequestBody Film update) {
-        if (filmService.isExistFilm(update.getId()))
+        Optional<Film> film = filmService.getFilm(update.getId());
+        if (film.isPresent())
         {
             filmService.updateFilm(update.getId(), update);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else
-        {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/film")
-    public ResponseEntity<Film> getFilmById(@RequestBody IdRecord record) {
-        if (filmService.isExistFilm(record.id())) {
-            return new ResponseEntity<>(filmService.getFilm(record.id()).get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Optional<Film>> getFilmById(@RequestParam(required = true) UUID id) {
+        Optional<Film> result = filmService.getFilm(id);
+        if (result.isPresent())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("api/film/all")
+    public ResponseEntity<List<Film>> getAllFilms() {
+        try {
+            List<Film> films = filmService.getFilms();
+            if (!films.isEmpty()) {
+                return new ResponseEntity<>(films, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("api/film/all")
-    public ResponseEntity<List<Film>> getFilmByTitle (@RequestBody TitleRecord record) {
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("api/film/title")
+    public ResponseEntity<List<Film>> getFilmByTitle(@RequestBody TitleRecord record) {
         try {
-            List<Film> result = new ArrayList<Film>();
-
-            if (record.title() == null)
-                filmService.getFilms().forEach(result::add);
-            else
-                filmService.getFilmByTitle(record.title()).forEach(result::add);
-
+            List<Film> result = filmService.getFilmByTitle(record.title());
             if (!result.isEmpty())
                 return new ResponseEntity<>(result, HttpStatus.OK);
             else
