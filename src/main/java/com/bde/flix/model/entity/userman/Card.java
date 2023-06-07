@@ -7,6 +7,7 @@ import org.hibernate.annotations.UuidGenerator;
 
 
 import java.time.YearMonth;
+import java.util.Calendar;
 import java.util.UUID;
 
 @Getter
@@ -21,11 +22,11 @@ public class Card
     @UuidGenerator
     private UUID id;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     private User user;
-    private long card_number;
+    private long cardNumber;
     private int cvv;
-    private YearMonth expire_date;
+    private YearMonth expireDate;
     @Column(nullable = false, length = 64)
     private String cardHolder;
 }
