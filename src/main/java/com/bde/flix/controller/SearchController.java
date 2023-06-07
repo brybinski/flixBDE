@@ -1,18 +1,17 @@
 package com.bde.flix.controller;
 
-import com.bde.flix.controller.Payload.IdRecord;
 import com.bde.flix.controller.Payload.SearchRecord;
-import com.bde.flix.controller.Payload.SeasonRecord;
 import com.bde.flix.controller.Payload.TagsRecord;
 import com.bde.flix.model.entity.content.Content;
 import com.bde.flix.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class SearchController
@@ -21,6 +20,7 @@ public class SearchController
     @Autowired
     private ContentService contService;
 
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/search/")
@@ -45,6 +45,7 @@ public class SearchController
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/search/tags")
@@ -70,6 +71,8 @@ public class SearchController
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/search/")

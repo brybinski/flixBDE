@@ -1,18 +1,16 @@
 package com.bde.flix.controller;
 
 
-import com.bde.flix.controller.Payload.EpisodeRecord;
 import com.bde.flix.controller.Payload.IdRecord;
-import com.bde.flix.model.entity.content.Film;
-import com.bde.flix.service.EpisodeService;
 import com.bde.flix.model.entity.content.Episode;
+import com.bde.flix.service.EpisodeService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +21,8 @@ public class EpisodeController {
 
     @Autowired
     private EpisodeService episodeService;
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/episode")
     public ResponseEntity<HttpStatus> CreateEpisode(@RequestBody Episode record) {
@@ -41,6 +41,7 @@ public class EpisodeController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/episode")
     public ResponseEntity<HttpStatus> deleteEpisode(@RequestBody IdRecord record) {
@@ -53,6 +54,8 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/episode")
     public ResponseEntity<HttpStatus> updateEpisode(@RequestBody Episode update) {
@@ -66,6 +69,8 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
+
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/episode")
     public ResponseEntity<Optional<Episode>> getEpisodeById(@RequestParam(required = true) UUID id) {
@@ -76,6 +81,7 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/episode/all")
     public ResponseEntity<List<Episode>> getAllEpisodes() {
@@ -90,6 +96,9 @@ public class EpisodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+
     @Transactional
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/episode/season")

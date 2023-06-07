@@ -1,17 +1,18 @@
 package com.bde.flix.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import net.minidev.json.JSONObject;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -58,6 +59,7 @@ public class PosterController {
             throw new IllegalStateException("could not read file " + file, e);
         }
     }
+
 
 
     @RequestMapping(value = "/poster", method = RequestMethod.GET,

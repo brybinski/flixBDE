@@ -1,17 +1,14 @@
 package com.bde.flix.controller;
 
 import com.bde.flix.controller.Payload.IdRecord;
-import com.bde.flix.controller.Payload.SeasonRecord;
-import com.bde.flix.model.entity.content.Episode;
-import com.bde.flix.model.entity.content.Series;
-import com.bde.flix.service.SeasonService;
 import com.bde.flix.model.entity.content.Season;
+import com.bde.flix.service.SeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,6 +18,8 @@ public class SeasonController {
 
     @Autowired
     private SeasonService seasonService;
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/season")
     public ResponseEntity<HttpStatus> CreateSeason(@RequestBody Season record)
@@ -31,6 +30,7 @@ public class SeasonController {
                 record.getSeries().getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/season")
@@ -44,6 +44,7 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/season")
@@ -58,6 +59,8 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
+
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/season")
     public ResponseEntity<Optional<Season>> getSeasonById(@RequestParam(required = true) UUID id) {
@@ -67,6 +70,7 @@ public class SeasonController {
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/season/all")
@@ -82,6 +86,7 @@ public class SeasonController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/season/series")

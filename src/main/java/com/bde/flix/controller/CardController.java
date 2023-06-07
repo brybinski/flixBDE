@@ -2,16 +2,12 @@ package com.bde.flix.controller;
 
 import com.bde.flix.controller.Payload.CardRecord;
 import com.bde.flix.controller.Payload.IdRecord;
-import com.bde.flix.service.CardService;
 import com.bde.flix.model.entity.userman.Card;
+import com.bde.flix.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-import java.util.UUID;
 
 
 @RestController

@@ -2,19 +2,15 @@ package com.bde.flix.controller;
 
 
 import com.bde.flix.controller.Payload.IdRecord;
-import com.bde.flix.controller.Payload.SeriesRecord;
 import com.bde.flix.controller.Payload.TitleRecord;
-import com.bde.flix.model.entity.content.Episode;
-import com.bde.flix.model.entity.content.Film;
-import com.bde.flix.model.entity.content.Season;
-import com.bde.flix.service.SeriesService;
 import com.bde.flix.model.entity.content.Series;
+import com.bde.flix.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,6 +20,7 @@ public class SeriesController {
 
     @Autowired
     private SeriesService seriesService;
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series")
     public ResponseEntity<HttpStatus> CreateSeries(@RequestBody Series create)
@@ -39,7 +36,7 @@ public class SeriesController {
                 create.getGenreTag());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("api/series")
     public ResponseEntity<HttpStatus> deleteSeries(@RequestBody IdRecord record) {
@@ -53,7 +50,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("api/series")
     public ResponseEntity<HttpStatus> updateSeries(@RequestBody Series update) {
@@ -67,6 +64,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("api/series")
     public ResponseEntity<Optional<Series>> getSeriesById(@RequestParam(required = true) UUID id) {
@@ -77,6 +75,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series/all")
@@ -92,6 +91,7 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series/title")
