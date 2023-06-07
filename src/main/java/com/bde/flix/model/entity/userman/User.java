@@ -23,4 +23,6 @@ public class User extends Account
     private LocalDate sub_end;
     @OneToMany
     private Set<Content> favoriteList;
+    @OneToMany
+    private Set<Content> history;
 }

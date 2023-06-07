@@ -1,7 +1,5 @@
 package com.bde.flix.service;
 
-import com.bde.flix.model.entity.content.Episode;
-import com.bde.flix.model.entity.content.Film;
 import com.bde.flix.model.entity.content.Season;
 import com.bde.flix.model.entity.content.Series;
 import com.bde.flix.model.repository.SeasonRepository;
