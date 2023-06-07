@@ -78,7 +78,7 @@ public class SeriesController {
     @PreAuthorize("hasRole('ROLE_USER')")
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("api/series/all")
+    @GetMapping("api/series/all")
     public ResponseEntity<List<Series>> getAllSeries() {
         try {
             List<Series> serieses = seriesService.getSerieses();
@@ -91,8 +91,9 @@ public class SeriesController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PreAuthorize("hasRole('ROLE_USER')")
 
+
+    @PreAuthorize("hasRole('ROLE_USER')")
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("api/series/title")
     public ResponseEntity<List<Series>> getSeriesByTitle (@RequestBody TitleRecord record) {

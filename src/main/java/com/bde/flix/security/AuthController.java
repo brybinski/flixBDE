@@ -79,14 +79,13 @@ public class AuthController {
         String jwtCookie = jwtUtl.generateTokenFromEmail(email, password);
 
         //TODO: switch to email verification after deployment
-//        try {
-//            sender.sendEmail(email, "Confirm email" , String.format("confirmation link:  http://localhost:8080/api/authentication/verifyEmail?ver=%s", jwtCookie));
-//        }
-//        catch (Exception e){
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//
-        User usr = usrSrvc.createuser(email,passEnc.encode(password));
+        try {
+            sender.sendEmail(email, "Confirm email" , String.format("confirmation link:  http://localhost:8080/api/authentication/verifyEmail?ver=%s", jwtCookie));
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
 
         return ResponseEntity.ok().body(new RegisterResponse(email,"Email sent"));
     }
